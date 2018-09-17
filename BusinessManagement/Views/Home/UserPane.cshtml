@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Scripts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Login.css" rel="stylesheet" />
+</head>
+<body style="background-color:transparent">
+    <ul class="list-group">
+        <li class="list-group-item"><i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp; Profile</li>
+        <li class="list-group-item"><i class="fa fa-inbox fa-lg" aria-hidden="true"></i>&nbsp; Notications</li>
+        <li class="list-group-item"><i class="fa fa-gear fa-lg" aria-hidden="true"></i>&nbsp; Settings</li>  
+        <li class="list-group-item"><a href="@Url.Action("Logout", "Home")"><i class="fa fa-power-off fa-lg" aria-hidden="true"></i>&nbsp; Logout</a></li> 
+    </ul>
+</body>
+</html>

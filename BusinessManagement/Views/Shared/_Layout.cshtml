@@ -12,6 +12,7 @@
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Scripts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/Login.js"></script>
     <script>
         function startTime() {
             var today = new Date();
@@ -70,17 +71,16 @@
                 <ul class="nav navbar-nav navbar-center">
                     <li><h4 id="txt" class="navbar-text navbar-right" style="color: darkgray"></h4></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="fa fa-user fa-lg" aria-hidden="true"></i></a></li>
-                    <li><a href="#"><i class="fa fa-inbox fa-lg" aria-hidden="true"></i></a></li>
-                    <li><a href="#"><i class="fa fa-gear fa-lg" aria-hidden="true"></i></a></li>   
-                    <li><a href="@Url.Action("Logout", "Home")"><i class="fa fa-power-off fa-lg" aria-hidden="true"></i></a></li> 
+                <ul class="nav navbar-nav navbar-right" style="margin-right: 2px">
+                    <li><a href="#"><i class="fa fa-user fa-lg" aria-hidden="true" onclick="ToggleUserPane();"></i></a></li>
                 </ul>
-
             </div>
         </div>
     </nav>
-    <div class="container-fluid" style="height: 100vh; overflow: auto">
+    <div id="userFrame" class="userDropDown">
+        <iframe frameborder="0" scrolling="no" class="pull-right loginFrame" src='@Url.Action("UserPane", "Home")'></iframe>
+    </div>
+    <div class="container-fluid" style="height: 100vh; overflow: hidden">
         @RenderBody();
     </div>
 

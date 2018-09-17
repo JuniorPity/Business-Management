@@ -28,24 +28,18 @@ namespace BusinessManagement.Controllers
             }
         }
 
+        public ActionResult UserPane()
+        {
+            return View();
+        }
+
         public ActionResult Timecard()
         {
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        // Login/Logout Actions
+        #region Login/Logout
 
         [HttpGet]
         public ActionResult Login()
@@ -81,5 +75,7 @@ namespace BusinessManagement.Controllers
 
             return RedirectToAction("Login");
         }
+
+        #endregion
     }
 } 

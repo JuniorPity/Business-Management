@@ -239,6 +239,8 @@
   <ItemGroup>
     <Content Include="Content\basic.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\Login.css" />
+    <Content Include="Scripts\Login.js" />
     <Content Include="Content\Summary.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -375,6 +377,7 @@
     <Content Include="Views\TimeCard\WeeklySummary.cshtml" />
     <Content Include="Views\TimeCard\MonthlySummary.cshtml" />
     <Content Include="Views\TimeCard\YearlySummary.cshtml" />
+    <Content Include="Views\Home\UserPane.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

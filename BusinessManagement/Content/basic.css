@@ -653,3 +653,18 @@ table.fc-border-separate {
 input[readonly].pointer-cursor {
     cursor: pointer;
 }
+
+.userDropDown{
+   position:absolute;
+   margin: 52px 15px 20px 10px;
+   float: right;
+   right: 10px;
+   z-index: 1000;
+   display: none;
+   width: 200px;
+}
+
+.loginFrame{
+    height: 500px;
+    width: 150px;
+}
