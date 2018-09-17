@@ -16,6 +16,7 @@
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Scripts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/Summary.css" rel="stylesheet" />
+    <script src="~/Scripts/Summary.js"></script>
 </head>
 <body>
     @if (Model.events.Count == 0)
@@ -33,7 +34,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <button type="button" class="btn btn-info pull-left" onclick="">Print Summary</button>
+                        <button type="button" class="btn btn-info pull-left no-print" onclick="PrintSummary();">Print Summary</button>
                         <h4 class="pull-right">Dates: @Model.events.First().Key.ToString("MM/dd/yyyy") - @Model.events.Last().Key.ToString("MM/dd/yyyy")</h4>
                     </div>
                 </div>

@@ -80,3 +80,12 @@ function ChangeYear(button)
         $("#summaryFrame").attr('src', $("#yearValue").val().replace("1999", year));
     }
 }
+
+/*
+Purpose: Print the appropriate summary page
+Author: Jordan Pitner 9/16/2018
+*/
+function PrintSummary()
+{
+    window.print();
+}

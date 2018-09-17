@@ -23,3 +23,11 @@ iframe::-webkit-scrollbar {
 .error{
     margin: 25px;
 }
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
