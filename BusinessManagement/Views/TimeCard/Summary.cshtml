@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<head>
+    <link href="~/Content/Summary.css" rel="stylesheet"/>
+    <script src="~/Scripts/TimeCard.js"></script>
+    <script src="~/Scripts/Summary.js"></script>
+</head>
+<html>
+<body>
+    @Html.Hidden("weekValue", Url.Action("WeeklySummary", "TimeCard"))
+    @Html.Hidden("monthValue", Url.Action("MonthlySummary", "TimeCard", new { month = "January", year = "1999" }))
+    @Html.Hidden("yearValue", Url.Action("YearlySummary", "TimeCard", new { year = "1999" }))
+
+    <div id="selectorRow" style="margin-top: 75px; margin-left: 25px; margin-right: 25px">
+        <div class="pull-right">
+            <a href="@Url.Action("Time", "TimeCard")" class="btn btn-primary">Back &nbsp;<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+        </div>
+        <!-- Summary display selection -->
+        <div class="btn-group">
+            <button id="timeFrame" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Week View <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li id="weekSelector"><a href="#">Week (Last 7 Days)</a></li>
+                <li id="monthSelector"><a href="#">Month (Select Month)</a></li>
+                <li id="yearSelector"><a href="#">Year (Select Year)</a></li>
+            </ul>
+        </div>
+        <!-- Monthly dropdown list -->
+        <div id="monthButton" class="btn-group" style="display:none">
+            <button id ="monthDropDown" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                January <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li id="january" onclick="ChangeMonth(this);"><a href="#">January</a></li>
+                <li id="february" onclick="ChangeMonth(this);"><a href="#">February</a></li>
+                <li id="march" onclick="ChangeMonth(this);"><a href="#">March</a></li>
+                <li id="april" onclick="ChangeMonth(this);"><a href="#">April</a></li>
+                <li id="may" onclick="ChangeMonth(this);"><a href="#">May</a></li>
+                <li id="june" onclick="ChangeMonth(this);"><a href="#">June</a></li>
+                <li id="july" onclick="ChangeMonth(this);"><a href="#">July</a></li>
+                <li id="august" onclick="ChangeMonth(this);"><a href="#">August</a></li>
+                <li id="september" onclick="ChangeMonth(this);"><a href="#">September</a></li>
+                <li id="october" onclick="ChangeMonth(this);"><a href="#">October</a></li>
+                <li id="november" onclick="ChangeMonth(this);"><a href="#">November</a></li>
+                <li id="december" onclick="ChangeMonth(this);"><a href="#">December</a></li>
+            </ul>
+        </div>
+        <div id="yearButton" class="btn-group" style="display:none">
+            <button id="yearDropDown" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                2018 <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li onclick="ChangeYear(this);"><a href="#">2018</a></li>
+                <li onclick="ChangeYear(this);"><a href="#">2017</a></li>
+                <li onclick="ChangeYear(this);"><a href="#">2016</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- IFrame to update the corresponding summary view -->
+    <div id="informationSection" class="summary">
+        <iframe id="summaryFrame" onload="summaryFrameResize();" style="overflow:hidden" src='@Url.Action("WeeklySummary", "TimeCard")' frameborder="0" class="summaryIFrame"></iframe>
+    </div>
+</body>
+</html>
+

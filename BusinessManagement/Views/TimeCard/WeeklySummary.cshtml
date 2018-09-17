@@ -1,0 +1,107 @@
+﻿@model BusinessManagement.Models.Summary
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Scripts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Summary.css" rel="stylesheet" />
+</head>
+<body>
+    @if (Model.events.Count == 0)
+    {
+        <div class="alert alert-warning" role="alert">
+            <b>Oops!</b> We could not find any data for those dates. Please try again.
+        </div>
+    }
+    else
+    {
+    <div class="summaryPanel">
+        <div class="panel panel-info">
+            <div class="panel-heading">@Model.name - Weekly Summary</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <button type="button" class="btn btn-info pull-left" onclick="">Print Summary</button>
+                        <h4 class="pull-right">Dates: @Model.events.First().Key.ToString("MM/dd/yyyy") - @Model.events.Last().Key.ToString("MM/dd/yyyy")</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p><b>Employee Name</b></p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p><b>Date</b></p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p><b>Total Hours</b></p>
+                    </div>
+                    <div class="col-lg-3">
+                        <p><b>Pay Rate</b></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <hr />
+                    </div>
+                </div>
+                @foreach (KeyValuePair<DateTime, string> entry in Model.events)
+                {
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <p>@Model.name</p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p>@entry.Key.ToString("MM/dd/yyyy")</p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p>@entry.Value</p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p>$@Model.payRate.ToString("0.00")</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <hr />
+                        </div>
+                    </div>
+                }
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h5 class="pull-right">Subtotal: $@Model.totalPay</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h5 class="pull-left">Average Hours: @Math.Round(@Model.totalHours / @Model.events.Count, 2)</h5>
+                        <h5 class="pull-right">Total Taxes: $@Model.totalPay</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4 class="pull-left">Total Hours: @Model.totalHours</h4>
+                        <h4 class="pull-right">Total Pay: $@Model.totalPay</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</body>
+</html>

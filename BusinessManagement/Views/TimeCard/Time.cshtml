@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <link href="~/Content/basic.css" rel="stylesheet">
+    <link href="~/Scripts/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <link href="~/Scripts/fullcalendar/fullcalendar.print.css" rel="stylesheet" media="print" />
+    <link href="~/Scripts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script src='~/Scripts/fullcalendar/moment.js'></script>
+    <script src="~/Scripts/fullcalendar/fullcalendar.js"></script>
+    <script src="~/Scripts/datetimepicker/bootstrap-datetimepicker.js"></script>
+    <link href="~/Scripts/datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/TimeCard.js"></script>
+</head>
+
+<body style="overflow:hidden">
+    <div id="headerButtons" style="margin-top: 75px">
+        <button id="viewSummaryBtn" type="button" class="btn btn-primary pull-left" data-dismiss="modal" style="margin-left: 25px">View Summary</button>
+        <button type="button" class="btn btn-success pull-right" data-dismiss="modal" style="margin-right: 27px">Export Summary</button>
+    </div>
+
+    <!-- Timecard Frame-->
+    <div id="calendarPanel" class="panel panel-primary" style="border: 0px; width: 1850px; height:785px; margin-top: 125px; margin-left: 25px">
+        <div class="panel-body">
+            <div id="calendar">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Timecard Entry-->
+    <div id="timeEntryModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #428bca">
+                    <button type="button" class="close" data-dismiss="modal" style="color: white">&times;</button>
+                    <h4 id="timeAddHeader" class="modal-title" style="color: white"><span class="fa fa-calendar-plus-o pull-left"></span>Add Time</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="dtp_input3" class="col-md-3 control-label">Start Time</label>
+                        <div class="input-group date form_time col-md-6" data-date="" data-date-format="HH:ii P" data-link-field="dtp_input3" data-link-format="hh:ii">
+                            <input id="startInputCreate" class="form-control pointer-cursor" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input3" value="" /><br />
+                    </div>
+                    &nbsp;
+                    <div class="form-group">
+                        <label for="dtp_input3" class="col-md-3 control-label">End Time</label>
+                        <div class="input-group date form_time col-md-6" data-date="" data-date-format="HH:ii P" data-link-field="dtp_input3" data-link-format="hh:ii">
+                            <input id="endInputCreate" class="form-control pointer-cursor" size="25" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input3" value="" /><br />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="CreateTimeEntry();">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Time Edit -->
+    <div id="timeEditModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #428bca">
+                    <button type="button" class="close" data-dismiss="modal" style="color: white">&times;</button>
+                    <h4 id="timeEditHeader" class="modal-title" style="color: white"><span class="fa fa-calendar-check-o pull-left"></span>Edit Time</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="dtp_input3" class="col-md-3 control-label">Start Time</label>
+                        <div class="input-group date form_time col-md-6" data-date="" data-date-format="HH:ii P" data-link-field="dtp_input3" data-link-format="hh:ii">
+                            <input id="startInputEdit" class="form-control pointer-cursor" size="16" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input3" value="" /><br />
+                    </div>
+                    &nbsp;
+                    <div class="form-group">
+                        <label for="dtp_input3" class="col-md-3 control-label">End Time</label>
+                        <div class="input-group date form_time col-md-6" data-date="" data-date-format="HH:ii P" data-link-field="dtp_input3" data-link-format="hh:ii">
+                            <input id="endInputEdit" class="form-control pointer-cursor" size="25" type="text" value="" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        </div>
+                        <input type="hidden" id="dtp_input3" value="" /><br />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger pull-left" onclick="DeleteTimeEntryPrompt();">Delete</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="EditTimeEntry();">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Delete Entry Prompt -->
+    <div id="deletePromptModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #428bca">
+                    <button type="button" class="close" data-dismiss="modal" style="color: white">&times;</button>
+                    <h4 id="deletePromptHeader" class="modal-title" style="color: white"><span class="fa fa-calendar-times-o pull-left"></span>Confirm Delete</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size:16px; font-family:Arial; font-weight:bold;" align="center">Are you sure you wish to delete this time entry? Changes cannot be undone once the entry is deleted.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger pull-left" onclick="DeleteTimeEntry();">Delete</button>
+                    <button type="button" class="btn btn-default" onclick="CancelDelete();">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- AJAX Calls -->
+<script>
+    $(document).ready(function () {
+        $('#calendar').fullCalendar({
+            height: 755,
+            header: {
+                left: 'prev,next',
+                center: 'title',
+                right: ''
+            },
+            eventClick: function (event, element) {
+                GetTimeEntry(event);
+            },
+            eventDrop: function (event, element) {
+                alert(event.start);
+            },
+            defaultDate: getCurrenteDate(),
+            navLinks: true, // can click day/week names to navigate views
+            selectable: true,
+            selectHelper: true,
+            select: function (start, end) {
+                $('#timeEntryModal').modal('show');
+                document.getElementById("timeAddHeader").innerHTML = "<span class='fa fa-calendar-plus-o pull-left'></span>" + "Add Time - " + convertEpoch(start);
+            },
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+            events: '/TimeCard/GetTimeEntries/',
+            views: {
+                month: {
+                    displayEventEnd: true
+                }
+            }
+        });
+
+        $('.form_time').datetimepicker({
+            weekStart: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 1,
+            minView: 0,
+            maxView: 1,
+            forceParse: 0,
+            showMeridian: true,
+            todayBtn: false,
+        });
+    });
+   
+    /*
+    Function: CreateTimeEntry()
+    Description: Ajax function to call back to the MVC controller and post the newly created
+    time event/time card entry
+    Date: 5/15/2017
+    Author: Jordan Pitner
+    */
+    function CreateTimeEntry() {
+        // Generate data to post to the database via ajax
+        var date = ProcessDate(document.getElementById("timeAddHeader"));
+        var starts = date + '' + ProcessTime(document.getElementById("startInputCreate").value);
+        var ends = date + '' + ProcessTime(document.getElementById("endInputCreate").value);
+        var title = generateTotalHours(starts, ends);
+
+        // Ajax post request for time entry
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Content("/TimeCard/CreateTimeEntry/")",
+            dataType: 'json',
+            data: JSON.stringify({ timeEvent: { start: starts, end: ends, title: title } }),
+            async: true,
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                // On success, render the new time event to the calendar view
+                eventData = {
+                    id: data.id,
+                    title: title,
+                    start: starts,
+                    end: ends
+                };
+
+                // Render events for new entry
+                $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                $('#calendar').fullCalendar('unselect');
+                $('#timeEntryModal').modal('hide');
+
+                document.getElementById("startInputCreate").value = "";
+                document.getElementById("endInputCreate").value = "";
+            },
+            error: function () {
+                alert('There was an error processing your request');
+            }
+        });
+    }
+
+    /*
+   Function: EditTimeEntry()
+   Description: Ajax function to call back to the MVC controller and edit the existing entry
+   time event/time card entry
+   Date: 9/9/2018
+   Author: Jordan Pitner
+   */
+    function DeleteTimeEntry() {
+        // Ajax post request for time entry
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Content("/TimeCard/DeleteTimeEntry/")",
+            dataType: 'json',
+            data: JSON.stringify({ id: window.changeID }),
+            async: true,
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+
+                // Render events for new entry
+                $('#calendar').fullCalendar('removeEvents', window.changeID);
+                $('#calendar').fullCalendar('unselect');
+                $('#timeEditModal').modal('hide');
+                $("#deletePromptModal").modal('hide');
+
+                window.changeEvent = null;
+                window.changeID = null;
+            },
+            error: function () {
+                alert('There was an error processing your request');
+            }
+        });
+    }
+
+    /*
+   Function: EditTimeEntry()
+   Description: Ajax function to call back to the MVC controller and edit the existing entry
+   time event/time card entry
+   Date: 9/9/2018
+   Author: Jordan Pitner
+   */
+    function EditTimeEntry() {
+        // Generate data to post to the database via ajax
+        var date = ProcessDate(document.getElementById("timeEditHeader"));
+        var starts = date + '' + ProcessTime(document.getElementById("startInputEdit").value);
+        var ends = date + '' + ProcessTime(document.getElementById("endInputEdit").value);
+        var title = generateTotalHours(starts, ends);
+
+        // Ajax post request for time entry
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Content("/TimeCard/EditTimeEntry/")",
+            dataType: 'json',
+            data: JSON.stringify({ timeEvent: { id: window.changeID, start: starts, end: ends, title: title } }),
+            async: true,
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                // On success, render the new time event to the calendar view
+                eventData = {
+                    id: data.id,
+                    title: title,
+                    start: starts,
+                    end: ends
+                };
+
+                var event = window.changeEvent;
+                event.title = title;
+                event.end = ends;
+                event.start = starts;
+
+                // Render events for updated entry
+                $('#calendar').fullCalendar('updateEvent', event);
+                $('#calendar').fullCalendar('unselect');
+                $('#timeEditModal').modal('hide');
+
+                window.changeEvent = null;
+                window.changeID = null;
+            },
+            error: function () {
+                alert('There was an error processing your request');
+            }
+        });
+    }
+
+    /*
+   Function: GetTimeEntry()
+   Description: Ajax function to populate previously entered data to potentially edit 
+   Date: 9/9/2018
+   Author: Jordan Pitner
+   */
+    function GetTimeEntry(event)
+    {
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Content("/TimeCard/GetTimeEntry/")",
+            dataType: 'json',
+            data: JSON.stringify({ id: event.id }),
+            async: true,
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+
+                // Show start and end times before edit
+                var startDate = new Date(data.start);
+                var startTime = convertToReadableFormat(startDate.toTimeString());
+
+                var endDate = new Date(data.end);
+                var endTime = convertToReadableFormat(endDate.toTimeString());
+
+                // Set the input values to show original entries
+                $("#startInputEdit").val(startTime);
+                $("#endInputEdit").val(endTime);
+                $('#timeEditModal').modal('show');
+
+                document.getElementById("timeEditHeader").innerHTML = "<span class='fa fa-calendar-check-o pull-left'></span>" + "Edit Time - " + convertEpoch(data.start);
+
+                window.changeID = event.id;
+                window.changeEvent = event;
+            },
+            error: function () {
+                alert('There was an error processing your request');
+            }
+        });
+    }
+
+    $('#viewSummaryBtn').click(function(){
+        document.location = '@Url.Action("Summary", "TimeCard")';
+    })
+</script>
+

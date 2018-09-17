@@ -1,0 +1,92 @@
+﻿@using BusinessManagement.Utilities
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Scripts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script>
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            var time = "AM"
+
+            if (h > 12) {
+                h = h - 12;
+                time = "PM";
+            }
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML =
+            h + ":" + m + ":" + s + " " + time;
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+
+        $(document).ready(function () {
+            $('ul.nav.navbar-nav').find('a[href="' + location.pathname + '"]')
+                .closest('li').addClass('active');
+        });
+
+    </script>
+    <style>
+        @@media (min-width: 768px) {
+            .navbar-nav.navbar-center {
+            position: absolute;
+            left: 50%;
+            transform: translatex(-50%);
+            }
+        }
+    </style>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<!-- Shared Layout for side bar nav and top information bar-->
+<body style="background-color: #f3f3f4; overflow:hidden" onload="startTime();">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">      
+                <a class="navbar-brand" href="#">Company Name</a>
+                <ul class="nav navbar-nav">
+                    <li class="@Html.IsActive("TimeCard", "Time")"><a data-toggle="tooltip" title="Timecard" href="@Url.Action("Time", "TimeCard")"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></a></li>
+                    <li class="@Html.IsActive("Home", "Index")"><a data-toggle="tooltip" data-placement="top" title="Schedule" href="@Url.Action("Index", "Home")"><i class="fa fa-calendar fa-lg" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-comments fa-lg" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-address-book fa-lg" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-center">
+                    <li><h4 id="txt" class="navbar-text navbar-right" style="color: darkgray"></h4></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="fa fa-user fa-lg" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-inbox fa-lg" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-gear fa-lg" aria-hidden="true"></i></a></li>   
+                    <li><a href="@Url.Action("Logout", "Home")"><i class="fa fa-power-off fa-lg" aria-hidden="true"></i></a></li> 
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid" style="height: 100vh; overflow: auto">
+        @RenderBody();
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

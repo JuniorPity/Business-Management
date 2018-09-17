@@ -1,0 +1,164 @@
+E:\BusinessManagement\BusinessManagement\bin\ApplicationInsights.config
+E:\BusinessManagement\BusinessManagement\bin\roslyn\csc.exe
+E:\BusinessManagement\BusinessManagement\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\BusinessManagement\BusinessManagement\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\BusinessManagement\BusinessManagement\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\BusinessManagement\BusinessManagement\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\BusinessManagement\BusinessManagement\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\BusinessManagement\BusinessManagement\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\BusinessManagement\BusinessManagement\bin\roslyn\System.Collections.Immutable.dll
+E:\BusinessManagement\BusinessManagement\bin\roslyn\System.Reflection.Metadata.dll
+E:\BusinessManagement\BusinessManagement\bin\roslyn\vbc.exe
+E:\BusinessManagement\BusinessManagement\bin\roslyn\VBCSCompiler.exe
+E:\BusinessManagement\BusinessManagement\bin\roslyn\VBCSCompiler.exe.config
+E:\BusinessManagement\BusinessManagement\bin\BusinessManagement.dll.config
+E:\BusinessManagement\BusinessManagement\bin\BusinessManagement.dll
+E:\BusinessManagement\BusinessManagement\bin\BusinessManagement.pdb
+E:\BusinessManagement\BusinessManagement\bin\Antlr3.Runtime.dll
+E:\BusinessManagement\BusinessManagement\bin\EntityFramework.dll
+E:\BusinessManagement\BusinessManagement\bin\EntityFramework.SqlServer.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AI.Agent.Intercept.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AI.DependencyCollector.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AI.Web.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AI.WindowsServer.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.ApplicationInsights.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AspNet.Identity.Core.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Cookies.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Facebook.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Google.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.OAuth.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Twitter.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Web.Infrastructure.dll
+E:\BusinessManagement\BusinessManagement\bin\Newtonsoft.Json.dll
+E:\BusinessManagement\BusinessManagement\bin\Owin.dll
+E:\BusinessManagement\BusinessManagement\bin\System.Web.Helpers.dll
+E:\BusinessManagement\BusinessManagement\bin\System.Web.Mvc.dll
+E:\BusinessManagement\BusinessManagement\bin\System.Web.Optimization.dll
+E:\BusinessManagement\BusinessManagement\bin\System.Web.Razor.dll
+E:\BusinessManagement\BusinessManagement\bin\System.Web.WebPages.Deployment.dll
+E:\BusinessManagement\BusinessManagement\bin\System.Web.WebPages.dll
+E:\BusinessManagement\BusinessManagement\bin\System.Web.WebPages.Razor.dll
+E:\BusinessManagement\BusinessManagement\bin\WebGrease.dll
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AI.DependencyCollector.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AI.Web.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AI.WindowsServer.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.ApplicationInsights.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\BusinessManagement\BusinessManagement\bin\System.Web.Helpers.xml
+E:\BusinessManagement\BusinessManagement\bin\System.Web.Mvc.xml
+E:\BusinessManagement\BusinessManagement\bin\System.Web.Optimization.xml
+E:\BusinessManagement\BusinessManagement\bin\System.Web.Razor.xml
+E:\BusinessManagement\BusinessManagement\bin\System.Web.WebPages.xml
+E:\BusinessManagement\BusinessManagement\bin\System.Web.WebPages.Deployment.xml
+E:\BusinessManagement\BusinessManagement\bin\System.Web.WebPages.Razor.xml
+E:\BusinessManagement\BusinessManagement\bin\Antlr3.Runtime.pdb
+E:\BusinessManagement\BusinessManagement\bin\Newtonsoft.Json.xml
+E:\BusinessManagement\BusinessManagement\bin\EntityFramework.xml
+E:\BusinessManagement\BusinessManagement\bin\EntityFramework.SqlServer.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AspNet.Identity.Core.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Facebook.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Cookies.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.OAuth.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Google.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Twitter.xml
+E:\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\BusinessManagement\BusinessManagement\obj\Debug\BusinessManagement.dll
+E:\BusinessManagement\BusinessManagement\obj\Debug\BusinessManagement.pdb
+E:\BusinessManagement\BusinessManagement\obj\Debug\BusinessManagement.csprojResolveAssemblyReference.cache
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\ApplicationInsights.config
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\roslyn\csc.exe
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\roslyn\System.Collections.Immutable.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\roslyn\System.Reflection.Metadata.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\roslyn\vbc.exe
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\roslyn\VBCSCompiler.exe
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\roslyn\VBCSCompiler.exe.config
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\BusinessManagement.dll.config
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\BusinessManagement.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\BusinessManagement.pdb
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Antlr3.Runtime.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\EntityFramework.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\EntityFramework.SqlServer.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AI.Agent.Intercept.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AI.DependencyCollector.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AI.Web.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AI.WindowsServer.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.ApplicationInsights.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AspNet.Identity.Core.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Cookies.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Facebook.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Google.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.OAuth.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Twitter.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Web.Infrastructure.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Newtonsoft.Json.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Owin.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\System.Web.Helpers.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\System.Web.Mvc.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\System.Web.Optimization.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\System.Web.Razor.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\System.Web.WebPages.Deployment.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\System.Web.WebPages.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\System.Web.WebPages.Razor.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\WebGrease.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AI.DependencyCollector.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AI.Web.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AI.WindowsServer.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.ApplicationInsights.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\System.Web.Helpers.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\System.Web.Mvc.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\System.Web.Optimization.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\System.Web.Razor.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\System.Web.WebPages.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\System.Web.WebPages.Deployment.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\System.Web.WebPages.Razor.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Antlr3.Runtime.pdb
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Newtonsoft.Json.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\EntityFramework.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\EntityFramework.SqlServer.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AspNet.Identity.Core.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Facebook.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Cookies.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.OAuth.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Google.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.Twitter.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\obj\Debug\BusinessManagement.csprojResolveAssemblyReference.cache
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\obj\Debug\BusinessManagement.dll
+E:\Documents\Coding Projects\BusinessManagement\BusinessManagement\obj\Debug\BusinessManagement.pdb
