@@ -19,3 +19,7 @@ iframe::-webkit-scrollbar {
 .summaryPanel{
     margin: 0px 25px 0px 25px;
 }
+
+.error{
+    margin: 25px;
+}

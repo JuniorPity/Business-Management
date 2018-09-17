@@ -20,8 +20,9 @@
 <body>
     @if (Model.events.Count == 0)
     {
-        <div class="alert alert-warning" role="alert">
-            <b>Oops!</b> We could not find any data for those dates. Please try again.
+        <div class="alert alert-warning alert-dismissable error" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Oops!</strong> We could not find any data for those dates. Please try again.
         </div>
     }
     else

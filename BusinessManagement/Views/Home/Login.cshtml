@@ -31,6 +31,7 @@
                 h + ":" + m + ":" + s;
                 var t = setTimeout(startTime, 500);
             }
+
             function checkTime(i) {
                 if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
                 return i;
@@ -55,7 +56,14 @@
         @using (Html.BeginForm("User", "Login", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
-            <div style="width: 325px; position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%)">
+            <div style="width: 335px; position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%)">
+                @if (ViewBag.Error == "true")
+                {
+                <div class="alert alert-danger alert-dismissable" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Uh oh!</strong> Invalid username and/or password.
+                </div>
+                }
                 <div class="panel panel-default">
                     @*<div class="panel-heading text-center">Log In</div>*@
                     <div class="panel-body">
@@ -73,7 +81,7 @@
                             @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Password", @type = "password" })
                         </div>
                         <br />
-                        <input type="submit" value="Login" class="btn btn-default" style="width: 250px; margin-left: 25px" />
+                        <input type="submit" value="Login" class="btn btn-info" style="width: 250px; margin-left: 25px" />
                             </div>
                     </div>
                 </div>

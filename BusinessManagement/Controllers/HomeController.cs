@@ -70,7 +70,8 @@ namespace BusinessManagement.Controllers
                 }
             }
 
-            return View(user);
+            ViewBag.Error = "true";
+            return View();
         }
 
         public ActionResult Logout()
