@@ -683,3 +683,7 @@ input[readonly].pointer-cursor {
    -ms-user-select: none;
    user-select: none;
 }
+
+.shadowBox{
+    background-image: linear-gradient(90deg, #21283e, #4c5c8c);
+}

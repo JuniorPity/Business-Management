@@ -1,36 +1,35 @@
 ﻿.profileTopBar{
-    height: 400px;
+    height: 440px;
     background-image: linear-gradient(90deg, #21283e, #4c5c8c);
+    padding-top: 130px;
+    width: 100%;
 }
 
 .profilePicture{
     border-radius: 50%;
     width: 150px;
-    margin-left: 400px;
-    margin-top: 90px
+    /*padding: 10px;*/
 }
 
 .userName{
     font-size: 30px;
     color:white;
-    margin-top: 115px;
-    margin-left: 585px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
     font-weight:100;
+    /*padding: 10px;*/
 }
 
 .userNameDetails{
     font-size: 15px;
     color:white;
-    margin-left: 34px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight:100;
     display:inline;
+    padding: 10px
 }
 
 .panelTitle{
     font-size: 15px;
-    margin-left: 20px;
     margin-bottom: 15px;
     color:#4c5c8c;
     font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
@@ -39,7 +38,6 @@
 
 .panelTextContact{
     font-size: 15px;
-    margin-left: 20px;
     color:#4c5c8c;
     font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
     font-weight:100;
@@ -47,36 +45,19 @@
 
 .panelTextContactHighlight{
     font-size: 15px;
-    margin-left: 38px;
+    margin-left: 22px;
     color:#728ad3;
     font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
     font-weight:100;
 }
 
-.largeInfoPanel{
-    width: 40%; 
-    height: 350px;
-    margin-left: 400px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.smallInfoPanel{
-    width: 20%; 
-    height: 250px;
-    margin-left: 61.5%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.smallInfoPanelLong{
-    width: 20%; 
-    height: 450px;
-    margin-left: 61.5%;
+.infoPanel{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .contactPhoto{
-    width: 75px;
-    margin-left: 10px; 
+    width: 65px;
+
 }
 
 .panelTextContactName{
@@ -90,4 +71,9 @@
  .contactPanel:hover{
      background-color:#f3f3f4;
      cursor: pointer;
+ }
+
+ .centeredCol{
+     position: relative;
+  transform: translateY(90%);
  }
