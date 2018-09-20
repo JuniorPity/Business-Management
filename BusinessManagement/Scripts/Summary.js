@@ -87,5 +87,7 @@ Author: Jordan Pitner 9/16/2018
 */
 function PrintSummary()
 {
+    document.body.style.zoom = .75;
     window.print();
+    document.body.style.zoom = 1;
 }

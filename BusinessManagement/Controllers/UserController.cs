@@ -9,7 +9,7 @@ namespace BusinessManagement.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult Index()
+        public ActionResult Profile()
         {
             return View();
         }
