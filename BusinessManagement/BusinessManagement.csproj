@@ -201,6 +201,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TimeCardController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -380,7 +381,10 @@
     <Content Include="Views\TimeCard\MonthlySummary.cshtml" />
     <Content Include="Views\TimeCard\YearlySummary.cshtml" />
     <Content Include="Views\Home\UserPane.cshtml" />
-    <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\User\ProfilePage.cshtml">
+      <BrowseToURL>~/User/ProfilePage</BrowseToURL>
+    </Content>
+    <Content Include="Views\Error\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

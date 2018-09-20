@@ -1,4 +1,5 @@
-﻿
+﻿@model BusinessManagement.Models.User
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,9 +12,9 @@
             <img class="profilePicture pull-right" src="~/Images/spanLogoLogin.png" />
         </div>
         <div class="col-md-7">
-            <p class="userName">Jordan Pitner (Sales Associate)</p>
-            <p class="userNameDetails">Born: 7/1/1994</p>
-            <p class="userNameDetails">Joined: 6/1/2018</p>
+            <p class="userName">@Model.FirstName&nbsp;@Model.LastName</p>
+            <p class="userNameDetails">Born: @Model.DOB.Date.ToString("MM/dd/yyyy")</p>
+            <p class="userNameDetails">Joined: @Model.RegDate.Date.ToString("MM/dd/yyyy")</p>
         </div>
     </div>
     <div class="row" style="margin-top: -35px; width: 100%">
@@ -33,12 +34,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <p class="panelTextContactHighlight">
-                                Testing Testing Testing Testing Testing Testing Testing Testing Testing
-                                TestingTesting Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing
-                                Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing
-                                Testing Testing Testing Testing Testing Testing Testing Testing Testing
-                                TestingTesting Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing
-                                Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing
+                                @Model.AboutMe
                             </p>
                         </div>
                     </div>
@@ -48,8 +44,36 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12">
-                            <p class="panelTextContactHighlight">Hockey, Football, Coding, Sports</p>
+                        <div class="col-sm-12 panelTextContactHighlight" style="padding-bottom: 10px">
+                            @{ 
+                                int rand = 0;
+                            }
+                            @foreach (string skill in Model.Skills.Split(','))
+                            {
+                                if (rand == 0)
+                                {
+                                    <button type="button" class="btn btn-primary btn-sm">@skill</button>
+                                }
+                                else if (rand == 1)
+                                {
+                                    <button type="button" class="btn btn-danger btn-sm">@skill</button>
+                                }
+                                else if (rand == 2)
+                                {
+                                    <button type="button" class="btn btn-success btn-sm">@skill</button>
+                                }
+                                else if (rand == 3)
+                                {
+                                    <button type="button" class="btn btn-warning btn-sm">@skill</button>
+                                }
+                                else if (rand == 4)
+                                {
+                                    <button type="button" class="btn btn-info btn-sm">@skill</button>
+                                    rand = 0;
+                                }
+
+                                rand += 1;
+                            }
                         </div>
                     </div>
                     <div class="row">
@@ -80,7 +104,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <p class="panelTextContactHighlight">jrptnr13@gmail.com</p>
+                            <p class="panelTextContactHighlight">@Model.Email</p>
                         </div>
                     </div>
                     <div class="row">
@@ -90,7 +114,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <p class="panelTextContactHighlight">815-527-1291</p>
+                            <p class="panelTextContactHighlight">@Model.Phone</p>
                         </div>
                     </div>
                     <div class="row">
@@ -100,7 +124,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <p class="panelTextContactHighlight">18291892</p>
+                            <p class="panelTextContactHighlight">@Model.EmployeeID</p>
                         </div>
                     </div>
                 </div>

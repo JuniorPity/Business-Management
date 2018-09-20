@@ -29,6 +29,16 @@ $(function () {
     });
 });
 
+/*
+Purpose: Change the text and IFrame content when week view is selected
+Author: Jordan Pitner 9/10/2018
+*/
+$(function () {
+    $("#profile").on('click', function () {
+        window.parent.location.href = $("#profileValue").val();
+    });
+});
+
 $(document).mouseup(function (e) {
     var container = $("#userFrame");
     var picture = $("#userPhoto");

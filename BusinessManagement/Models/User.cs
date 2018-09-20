@@ -26,6 +26,12 @@ namespace BusinessManagement.Models
         public string Email { get; set; }
         public System.DateTime RegDate { get; set; }
         public string Password { get; set; }
+        public string EmployeeID { get; set; }
+        public string Salt { get; set; }
+        public System.DateTime DOB { get; set; }
+        public string Phone { get; set; }
+        public string AboutMe { get; set; }
+        public string Skills { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TimeEvent> TimeEvents { get; set; }

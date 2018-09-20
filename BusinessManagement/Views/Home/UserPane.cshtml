@@ -21,8 +21,9 @@
 </head>
 <body style="background-color:transparent">
     @Html.Hidden("logoutValue", Url.Action("Logout", "Home"))
+    @Html.Hidden("profileValue", @Url.Action("ProfilePage", "User"))
     <ul class="list-group">
-        <li class="list-group-item"><i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp; Profile</li>
+        <li id="profile" class="list-group-item"><a href="#"><i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp; Profile</a></li>
         <li class="list-group-item"><i class="fa fa-inbox fa-lg" aria-hidden="true"></i>&nbsp; Notications</li>
         <li class="list-group-item"><i class="fa fa-trophy fa-lg" aria-hidden="true"></i>&nbsp; Badges</li>  
         <li class="list-group-item"><i class="fa fa-gear fa-lg" aria-hidden="true"></i>&nbsp; Settings</li>  

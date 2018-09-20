@@ -15,6 +15,12 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="BusinessDataModel.User">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Skills" ColumnName="Skills" />
+          <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="RegDate" ColumnName="RegDate" />
           <ScalarProperty Name="Email" ColumnName="Email" />

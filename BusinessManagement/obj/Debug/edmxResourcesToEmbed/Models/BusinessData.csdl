@@ -30,6 +30,12 @@
     <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="TimeEvents" Relationship="BusinessDataModel.FK_TimeEvent_Users" FromRole="User" ToRole="TimeEvent" />
+    <Property Name="EmployeeID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Salt" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="AboutMe" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+    <Property Name="Skills" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
   </EntityType>
   <Association Name="FK_TimeEvent_Users">
     <End Type="BusinessDataModel.User" Role="User" Multiplicity="1" />

@@ -15,11 +15,17 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Password" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Salt" Type="nchar" MaxLength="15" Nullable="false" />
     <Property Name="FirstName" Type="nchar" MaxLength="15" Nullable="false" />
     <Property Name="LastName" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="DOB" Type="date" Nullable="false" />
     <Property Name="Email" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="Phone" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="AboutMe" Type="nchar" MaxLength="250" />
+    <Property Name="Skills" Type="nchar" MaxLength="250" />
     <Property Name="RegDate" Type="datetime" Nullable="false" />
-    <Property Name="Password" Type="nchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <Association Name="FK_TimeEvent_Users">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
