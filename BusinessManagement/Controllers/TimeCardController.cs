@@ -12,17 +12,19 @@ namespace BusinessManagement.Controllers
     {
         private BusinessDataEntities db = new BusinessDataEntities();
 
-        // GET: TimeCard
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         // Time Card Functions
         #region Time Card
         // GET: Time
         public ActionResult Time()
         {
+            // Validate that a session exists, or re-route to login
+            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+
+            if (userID == -1)
+            {
+                return RedirectToAction("Login", "Home", null);
+            }
+
             return View();
         }
 
@@ -34,7 +36,13 @@ namespace BusinessManagement.Controllers
         public ActionResult CreateTimeEntry(TimeEvent timeEvent)
         {
             TimeEvent te = new TimeEvent();
-            int userID = int.Parse(Session["UserID"].ToString());
+            // Validate that a session exists, or re-route to login
+            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+
+            if (userID == -1)
+            {
+                return RedirectToAction("Login", "Home", null);
+            }
 
             te.title = timeEvent.title;
             te.start = timeEvent.start;
@@ -55,6 +63,14 @@ namespace BusinessManagement.Controllers
         */
         public ActionResult EditTimeEntry(TimeEvent timeEvent)
         {
+            // Validate that a session exists, or re-route to login
+            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+
+            if (userID == -1)
+            {
+                return RedirectToAction("Login", "Home", null);
+            }
+
             TimeEvent timeEntry = db.TimeEvents.Where(t => t.id == timeEvent.id).FirstOrDefault();
 
             if (timeEntry != null)
@@ -79,6 +95,14 @@ namespace BusinessManagement.Controllers
         */
         public ActionResult DeleteTimeEntry(int id)
         {
+            // Validate that a session exists, or re-route to login
+            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+
+            if (userID == -1)
+            {
+                return RedirectToAction("Login", "Home", null);
+            }
+
             TimeEvent timeEntry = db.TimeEvents.Where(t => t.id == id).FirstOrDefault();
 
             if (timeEntry != null)
@@ -100,6 +124,14 @@ namespace BusinessManagement.Controllers
         */
         public ActionResult GetTimeEntry(int id)
         {
+            // Validate that a session exists, or re-route to login
+            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+
+            if (userID == -1)
+            {
+                return RedirectToAction("Login", "Home", null);
+            }
+
             TimeEvent timeEntry = db.TimeEvents.Where(t => t.id == id).FirstOrDefault();
 
             if (timeEntry != null)
@@ -117,9 +149,15 @@ namespace BusinessManagement.Controllers
         */
         public ActionResult GetTimeEntries()
         {
-            List<Event> timeEntries = new List<Event>();
+            // Validate that a session exists, or re-route to login
+            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
 
-            int userID = int.Parse(Session["UserID"].ToString());
+            if (userID == -1)
+            {
+                return RedirectToAction("Login", "Home", null);
+            }
+
+            List<Event> timeEntries = new List<Event>();
             List<TimeEvent> events = db.TimeEvents.Where(t => t.userID == userID).ToList();
 
             foreach(TimeEvent ev in events)
@@ -144,6 +182,14 @@ namespace BusinessManagement.Controllers
         // GET: Summary
         public ActionResult Summary()
         {
+            // Validate that a session exists, or re-route to login
+            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+
+            if (userID == -1)
+            {
+                return RedirectToAction("Login", "Home", null);
+            }
+
             return View();
         }
 
@@ -154,7 +200,14 @@ namespace BusinessManagement.Controllers
         */
         public ActionResult WeeklySummary()
         {
-            int userID = int.Parse(Session["UserID"].ToString());
+            // Validate that a session exists, or re-route to login
+            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+
+            if(userID == -1)
+            {
+                return RedirectToAction("Login", "Home", null);
+            }
+
             User user = db.Users.Where(u => u.Id == userID).FirstOrDefault();
             string name = user.FirstName + " " + user.LastName;
 
@@ -196,7 +249,14 @@ namespace BusinessManagement.Controllers
         */
         public ActionResult MonthlySummary(string month, string year)
         {
-            int userID = int.Parse(Session["UserID"].ToString());
+            // Validate that a session exists, or re-route to login
+            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+
+            if (userID == -1)
+            {
+                return RedirectToAction("Login", "Home", null);
+            }
+
             User user = db.Users.Where(u => u.Id == userID).FirstOrDefault();
             string name = user.FirstName + " " + user.LastName;
 
@@ -232,7 +292,14 @@ namespace BusinessManagement.Controllers
 
         public ActionResult YearlySummary(string year)
         {
-            int userID = int.Parse(Session["UserID"].ToString());
+            // Validate that a session exists, or re-route to login
+            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+
+            if (userID == -1)
+            {
+                return RedirectToAction("Login", "Home", null);
+            }
+
             User user = db.Users.Where(u => u.Id == userID).FirstOrDefault();
             string name = user.FirstName + " " + user.LastName;
 

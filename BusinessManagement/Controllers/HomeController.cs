@@ -30,11 +30,14 @@ namespace BusinessManagement.Controllers
 
         public ActionResult UserPane()
         {
-            return View();
-        }
+            // Validate that a session exists, or re-route to login
+            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
 
-        public ActionResult Timecard()
-        {
+            if (userID == -1)
+            {
+                return RedirectToAction("Login", "Home", null);
+            }
+
             return View();
         }
 

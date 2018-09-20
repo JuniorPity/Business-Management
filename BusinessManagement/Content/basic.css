@@ -1,7 +1,4 @@
-﻿body {
-}
-
-line {
+﻿line {
     display: block;
     height: 1px;
     border: 0;
@@ -658,7 +655,7 @@ input[readonly].pointer-cursor {
    position:absolute;
    margin: 52px 15px 20px 10px;
    float: right;
-   right: 10px;
+   right: 0px;
    z-index: 1000;
    display: none;
    width: 200px;
@@ -667,4 +664,22 @@ input[readonly].pointer-cursor {
 .loginFrame{
     height: 500px;
     width: 150px;
+}
+
+.userPictureArea{
+    padding-top: 10px;
+    padding-right: 10px
+}
+
+.userPicture{
+    border: 1px solid black;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.unselectable{
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
 }

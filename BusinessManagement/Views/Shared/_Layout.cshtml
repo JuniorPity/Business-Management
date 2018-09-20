@@ -13,6 +13,7 @@
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Scripts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <script type="text/javascript" src="~/Scripts/Login.js"></script>
+    <link href="~/Content/basic.css" rel="stylesheet"/>
     <script>
         function startTime() {
             var today = new Date();
@@ -54,10 +55,9 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-
 <!-- Shared Layout for side bar nav and top information bar-->
 <body style="background-color: #f3f3f4; overflow:hidden" onload="startTime();">
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top unselectable">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbar-collapse-1">      
                 <a class="navbar-brand" href="#">Company Name</a>
@@ -71,8 +71,8 @@
                 <ul class="nav navbar-nav navbar-center">
                     <li><h4 id="txt" class="navbar-text navbar-right" style="color: darkgray"></h4></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" style="margin-right: 2px">
-                    <li><a href="#"><i class="fa fa-user fa-lg" aria-hidden="true" onclick="ToggleUserPane();"></i></a></li>
+                <ul class="nav navbar-nav navbar-right userPictureArea" style="margin-right: 2px">
+                    <li class="unselectable" style="cursor:pointer"><i id="userChevron" class="fa fa-chevron-up" aria-hidden="true"></i>&nbsp;&nbsp;<img id="userPhoto" class="userPicture" src="~/Images/UserIcon.png" width="30" height="30"/></li>
                 </ul>
             </div>
         </div>
