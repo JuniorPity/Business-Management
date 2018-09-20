@@ -77,3 +77,21 @@
      position: relative;
      transform: translateY(90%);
  }
+
+ .badgeTitle{
+     color: white;
+     font-family: Impact;
+     font-size: 72px;
+ }
+
+ .panelTextBadgeHighlight{
+    font-size: 15px;
+    color:#728ad3;
+    font-family: Arial;
+    font-weight:bold;
+}
+
+ .disabledPanel{
+     opacity: .75;
+     background-color: lightgray;
+ }

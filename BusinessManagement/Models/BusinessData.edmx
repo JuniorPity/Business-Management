@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BusinessDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Badge">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Label" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="Description" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Icon" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="TimeEvent">
           <Key>
             <PropertyRef Name="id" />
@@ -15,12 +24,12 @@
           <Property Name="end" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="userID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Users">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="EmployeeID" Type="nchar" MaxLength="12" Nullable="false" />
           <Property Name="Password" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="Salt" Type="nchar" MaxLength="15" Nullable="false" />
           <Property Name="FirstName" Type="nchar" MaxLength="15" Nullable="false" />
@@ -33,10 +42,10 @@
           <Property Name="RegDate" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_TimeEvent_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="TimeEvent" Type="Self.TimeEvent" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="TimeEvent">
@@ -45,10 +54,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BusinessDataModelStoreContainer">
+          <EntitySet Name="Badge" EntityType="Self.Badge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TimeEvent" EntityType="Self.TimeEvent" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_TimeEvent_Users" Association="Self.FK_TimeEvent_Users">
-            <End Role="Users" EntitySet="Users" />
+            <End Role="User" EntitySet="User" />
             <End Role="TimeEvent" EntitySet="TimeEvent" />
           </AssociationSet>
         </EntityContainer>
@@ -69,29 +79,39 @@
         </EntityType>
         <EntityContainer Name="BusinessDataEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TimeEvents" EntityType="Self.TimeEvent" />
+          <EntitySet Name="Badges" EntityType="BusinessDataModel.Badge" />
           <EntitySet Name="Users" EntityType="BusinessDataModel.User" />
           <AssociationSet Name="FK_TimeEvent_Users" Association="BusinessDataModel.FK_TimeEvent_Users">
             <End Role="User" EntitySet="Users" />
             <End Role="TimeEvent" EntitySet="TimeEvents" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Badge">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Icon" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Salt" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="true" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="true" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="TimeEvents" Relationship="BusinessDataModel.FK_TimeEvent_Users" FromRole="User" ToRole="TimeEvent" />
-          <Property Name="EmployeeID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Salt" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="true" />
           <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
           <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="AboutMe" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
           <Property Name="Skills" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+          <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TimeEvents" Relationship="BusinessDataModel.FK_TimeEvent_Users" FromRole="User" ToRole="TimeEvent" />
         </EntityType>
         <Association Name="FK_TimeEvent_Users">
           <End Type="BusinessDataModel.User" Role="User" Multiplicity="1" />
@@ -122,20 +142,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Badges">
+            <EntityTypeMapping TypeName="BusinessDataModel.Badge">
+              <MappingFragment StoreEntitySet="Badge">
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="BusinessDataModel.User">
-              <MappingFragment StoreEntitySet="Users">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
                 <ScalarProperty Name="Skills" ColumnName="Skills" />
                 <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
-                <ScalarProperty Name="Salt" ColumnName="Salt" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

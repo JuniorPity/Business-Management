@@ -6,7 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="8cf4e6154b51435c8c5eb6338107aee0" Name="Diagram1">
         <EntityTypeShape EntityType="BusinessDataModel.TimeEvent" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BusinessDataModel.User" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BusinessDataModel.Badge" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BusinessDataModel.User" Width="1.5" PointX="3.25" PointY="1.375" />
         <AssociationConnector Association="BusinessDataModel.FK_TimeEvent_Users" />
       </Diagram>
     </edmx:Diagrams>
