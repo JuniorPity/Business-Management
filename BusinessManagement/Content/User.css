@@ -1,7 +1,7 @@
 ﻿.profileTopBar{
     height: 440px;
     background-image: linear-gradient(90deg, #21283e, #4c5c8c);
-    padding-top: 130px;
+    padding-top: 90px;
     width: 100%;
 }
 
@@ -26,6 +26,16 @@
     display:inline;
     padding-right: 10px;
     font-weight: bold;
+}
+
+.userNameDetailsRow{
+     margin-top: -190px; 
+     margin-bottom: 80px;
+ }
+
+.organizationRow{
+    margin-top: -75px;
+    margin-bottom: 60px;
 }
 
 .panelTitle{

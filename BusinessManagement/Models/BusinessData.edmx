@@ -14,6 +14,16 @@
           <Property Name="Description" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="Icon" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="OrganizationID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Label" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Registered" Type="date" Nullable="false" />
+          <Property Name="CodesCount" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="TimeEvent">
           <Key>
             <PropertyRef Name="id" />
@@ -40,8 +50,11 @@
           <Property Name="AboutMe" Type="nchar" MaxLength="250" />
           <Property Name="Skills" Type="nchar" MaxLength="250" />
           <Property Name="RegDate" Type="datetime" Nullable="false" />
+          <Property Name="Position" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Role" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="OrganizationID" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_TimeEvent_Users">
+        <Association Name="FK_TimeEvent_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="TimeEvent" Type="Self.TimeEvent" Multiplicity="*" />
           <ReferentialConstraint>
@@ -53,13 +66,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="OrganizationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BusinessDataModelStoreContainer">
           <EntitySet Name="Badge" EntityType="Self.Badge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TimeEvent" EntityType="Self.TimeEvent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_TimeEvent_Users" Association="Self.FK_TimeEvent_Users">
+          <AssociationSet Name="FK_TimeEvent_User" Association="Self.FK_TimeEvent_User">
             <End Role="User" EntitySet="User" />
             <End Role="TimeEvent" EntitySet="TimeEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Organization" Association="Self.FK_User_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -75,15 +105,20 @@
           <Property Name="start" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="end" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="userID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="BusinessDataModel.FK_TimeEvent_Users" FromRole="TimeEvent" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="BusinessDataModel.FK_TimeEvent_User" FromRole="TimeEvent" ToRole="User" />
         </EntityType>
         <EntityContainer Name="BusinessDataEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TimeEvents" EntityType="Self.TimeEvent" />
           <EntitySet Name="Badges" EntityType="BusinessDataModel.Badge" />
           <EntitySet Name="Users" EntityType="BusinessDataModel.User" />
-          <AssociationSet Name="FK_TimeEvent_Users" Association="BusinessDataModel.FK_TimeEvent_Users">
+          <AssociationSet Name="FK_TimeEvent_User" Association="BusinessDataModel.FK_TimeEvent_User">
             <End Role="User" EntitySet="Users" />
             <End Role="TimeEvent" EntitySet="TimeEvents" />
+          </AssociationSet>
+          <EntitySet Name="Organizations" EntityType="BusinessDataModel.Organization" />
+          <AssociationSet Name="FK_User_Organization" Association="BusinessDataModel.FK_User_Organization">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Badge">
@@ -111,9 +146,13 @@
           <Property Name="AboutMe" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
           <Property Name="Skills" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
           <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="TimeEvents" Relationship="BusinessDataModel.FK_TimeEvent_Users" FromRole="User" ToRole="TimeEvent" />
+          <Property Name="Position" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TimeEvents" Relationship="BusinessDataModel.FK_TimeEvent_User" FromRole="User" ToRole="TimeEvent" />
+          <Property Name="OrganizationID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Organization" Relationship="BusinessDataModel.FK_User_Organization" FromRole="User" ToRole="Organization" />
         </EntityType>
-        <Association Name="FK_TimeEvent_Users">
+        <Association Name="FK_TimeEvent_User">
           <End Type="BusinessDataModel.User" Role="User" Multiplicity="1" />
           <End Type="BusinessDataModel.TimeEvent" Role="TimeEvent" Multiplicity="*" />
           <ReferentialConstraint>
@@ -122,6 +161,29 @@
             </Principal>
             <Dependent Role="TimeEvent">
               <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Registered" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CodesCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="BusinessDataModel.FK_User_Organization" FromRole="Organization" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_User_Organization">
+          <End Type="BusinessDataModel.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="BusinessDataModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="OrganizationID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -155,6 +217,9 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="BusinessDataModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="RegDate" ColumnName="RegDate" />
                 <ScalarProperty Name="Skills" ColumnName="Skills" />
                 <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
@@ -166,6 +231,17 @@
                 <ScalarProperty Name="Salt" ColumnName="Salt" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="BusinessDataModel.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="CodesCount" ColumnName="CodesCount" />
+                <ScalarProperty Name="Registered" ColumnName="Registered" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

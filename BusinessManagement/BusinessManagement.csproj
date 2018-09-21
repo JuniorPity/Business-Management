@@ -230,6 +230,9 @@
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Organization.cs">
+      <DependentUpon>BusinessData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Summary.cs" />
     <Compile Include="Models\TimeEvent.cs">
       <DependentUpon>BusinessData.tt</DependentUpon>

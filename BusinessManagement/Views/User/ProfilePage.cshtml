@@ -8,16 +8,23 @@
 </head>
 <body>
     <div class="row profileTopBar">
-        <div class="col-md-2 col-md-offset-3">
-            <img class="profilePicture pull-right" src="~/Images/spanLogoLogin.png" />
+        <div class="col-md-6 col-md-offset-3 text-center">
+            <img class="profilePicture" src="~/Images/spanLogoLogin.png" />
         </div>
-        <div class="col-md-7">
-            <p class="userName">@Model.FirstName&nbsp;@Model.LastName</p>
+    </div>
+    <div class="row userNameDetailsRow">
+        <div class="col-md-6 col-md-offset-3 text-center">
+            <p class="userName">@Model.FirstName&nbsp;@Model.LastName &nbsp;(@Model.Position.Trim())</p>
             <p class="userNameDetails">Born: @Model.DOB.Date.ToString("MM/dd/yyyy")</p>
             <p class="userNameDetails">Joined: @Model.RegDate.Date.ToString("MM/dd/yyyy")</p>
         </div>
     </div>
-    <div class="row" style="margin-top: -35px; width: 100%">
+    <div class="row organizationRow">
+        <div class="col-md-6 col-md-offset-3 text-center">
+            <p class="userNameDetails"><i class="fa fa-globe"></i>&nbsp;Organization: @Model.Organization.Label</p>
+        </div>
+    </div>
+    <div class="row" style="width: 100%">
         <div class="col-md-6 col-md-offset-2">
             <div class="panel panel-default infoPanel">
                 <div class="panel-body">
@@ -45,7 +52,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 panelTextContactHighlight" style="padding-bottom: 10px">
-                            @{ 
+                            @{
                                 int rand = 0;
                             }
                             @foreach (string skill in Model.Skills.Split(','))

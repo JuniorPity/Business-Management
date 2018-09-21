@@ -17,3 +17,42 @@ a:active {
     text-decoration: none;
     color: black;
 }
+
+.profileTopBar{
+    height: 440px;
+    background-image: linear-gradient(90deg, #21283e, #4c5c8c);
+    padding-top: 90px;
+    width: 100%;
+}
+
+.panelTitle{
+    font-size: 25px;
+    margin-bottom: 15px;
+    color:#4c5c8c;
+    font-family: Arial;
+    font-weight:bold;
+}
+
+.panelTextContact{
+    font-size: 15px;
+    color:#4c5c8c;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
+    font-weight:100;
+}
+
+.panelTextContactHighlight{
+    font-size: 15px;
+    margin-left: 22px;
+    color:#728ad3;
+    font-family: Arial;
+    font-weight:bold;
+}
+
+.infoPanel{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 200px;
+}
+
+.row-padding{
+    padding: 5px;
+}

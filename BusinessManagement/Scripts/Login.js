@@ -20,7 +20,7 @@ function ToggleUserPane() {
 }
 
 /*
-Purpose: Change the text and IFrame content when week view is selected
+Purpose: Change window content when logout is selected
 Author: Jordan Pitner 9/10/2018
 */
 $(function () {
@@ -30,12 +30,22 @@ $(function () {
 });
 
 /*
-Purpose: Change the text and IFrame content when week view is selected
+Purpose: Change window content when logout is selected
 Author: Jordan Pitner 9/10/2018
 */
 $(function () {
     $("#profile").on('click', function () {
         window.parent.location.href = $("#profileValue").val();
+    });
+});
+
+/*
+Purpose: Change window content when logout is selected
+Author: Jordan Pitner 9/10/2018
+*/
+$(function () {
+    $("#badges").on('click', function () {
+        window.parent.location.href = $("#badgesValue").val();
     });
 });
 

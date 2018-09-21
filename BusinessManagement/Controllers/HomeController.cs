@@ -51,24 +51,22 @@ namespace BusinessManagement.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(User user)
+        public JsonResult Login(string username, string password)
         {
-            if (ModelState.IsValid)
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
             {
-                User obj = db.Users.Where(a => a.Email.Equals(user.Email) && a.Password.Equals(user.Password)).FirstOrDefault();
+                User obj = db.Users.FirstOrDefault(a => a.Email.Equals(username) && a.Password.Equals(password));
 
                 if (obj != null)
                 {
                     Session["UserID"] = obj.Id.ToString();
                     Session["Email"] = obj.Email.ToString();
 
-                    return RedirectToAction("Time", "TimeCard");
+                    return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
                 }
             }
 
-            ViewBag.Error = "true";
-            return View();
+            return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Logout()

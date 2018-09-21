@@ -9,6 +9,16 @@
     <Property Name="Description" Type="nchar" MaxLength="100" Nullable="false" />
     <Property Name="Icon" Type="varbinary(max)" />
   </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="OrganizationID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Label" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Registered" Type="date" Nullable="false" />
+    <Property Name="CodesCount" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="TimeEvent">
     <Key>
       <PropertyRef Name="id" />
@@ -35,8 +45,11 @@
     <Property Name="AboutMe" Type="nchar" MaxLength="250" />
     <Property Name="Skills" Type="nchar" MaxLength="250" />
     <Property Name="RegDate" Type="datetime" Nullable="false" />
+    <Property Name="Position" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="Role" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="OrganizationID" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK_TimeEvent_Users">
+  <Association Name="FK_TimeEvent_User">
     <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="TimeEvent" Type="Self.TimeEvent" Multiplicity="*" />
     <ReferentialConstraint>
@@ -48,13 +61,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_User_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="OrganizationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="BusinessDataModelStoreContainer">
     <EntitySet Name="Badge" EntityType="Self.Badge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TimeEvent" EntityType="Self.TimeEvent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_TimeEvent_Users" Association="Self.FK_TimeEvent_Users">
+    <AssociationSet Name="FK_TimeEvent_User" Association="Self.FK_TimeEvent_User">
       <End Role="User" EntitySet="User" />
       <End Role="TimeEvent" EntitySet="TimeEvent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Organization" Association="Self.FK_User_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="User" EntitySet="User" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -28,5 +28,6 @@ namespace BusinessManagement.Models
         public virtual DbSet<TimeEvent> TimeEvents { get; set; }
         public virtual DbSet<Badge> Badges { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Organization> Organizations { get; set; }
     }
 }

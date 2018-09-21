@@ -9,15 +9,20 @@
     <Property Name="start" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="end" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="userID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="User" Relationship="BusinessDataModel.FK_TimeEvent_Users" FromRole="TimeEvent" ToRole="User" />
+    <NavigationProperty Name="User" Relationship="BusinessDataModel.FK_TimeEvent_User" FromRole="TimeEvent" ToRole="User" />
   </EntityType>
   <EntityContainer Name="BusinessDataEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="TimeEvents" EntityType="Self.TimeEvent" />
     <EntitySet Name="Badges" EntityType="BusinessDataModel.Badge" />
     <EntitySet Name="Users" EntityType="BusinessDataModel.User" />
-    <AssociationSet Name="FK_TimeEvent_Users" Association="BusinessDataModel.FK_TimeEvent_Users">
+    <AssociationSet Name="FK_TimeEvent_User" Association="BusinessDataModel.FK_TimeEvent_User">
       <End Role="User" EntitySet="Users" />
       <End Role="TimeEvent" EntitySet="TimeEvents" />
+    </AssociationSet>
+    <EntitySet Name="Organizations" EntityType="BusinessDataModel.Organization" />
+    <AssociationSet Name="FK_User_Organization" Association="BusinessDataModel.FK_User_Organization">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="User" EntitySet="Users" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Badge">
@@ -45,9 +50,13 @@
     <Property Name="AboutMe" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
     <Property Name="Skills" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
     <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="TimeEvents" Relationship="BusinessDataModel.FK_TimeEvent_Users" FromRole="User" ToRole="TimeEvent" />
+    <Property Name="Position" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="TimeEvents" Relationship="BusinessDataModel.FK_TimeEvent_User" FromRole="User" ToRole="TimeEvent" />
+    <Property Name="OrganizationID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Organization" Relationship="BusinessDataModel.FK_User_Organization" FromRole="User" ToRole="Organization" />
   </EntityType>
-  <Association Name="FK_TimeEvent_Users">
+  <Association Name="FK_TimeEvent_User">
     <End Type="BusinessDataModel.User" Role="User" Multiplicity="1" />
     <End Type="BusinessDataModel.TimeEvent" Role="TimeEvent" Multiplicity="*" />
     <ReferentialConstraint>
@@ -56,6 +65,29 @@
       </Principal>
       <Dependent Role="TimeEvent">
         <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="OrganizationID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Label" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Registered" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CodesCount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="BusinessDataModel.FK_User_Organization" FromRole="Organization" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_User_Organization">
+    <End Type="BusinessDataModel.Organization" Role="Organization" Multiplicity="1" />
+    <End Type="BusinessDataModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="OrganizationID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
