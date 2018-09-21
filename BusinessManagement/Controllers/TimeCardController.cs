@@ -15,6 +15,7 @@ namespace BusinessManagement.Controllers
         // Time Card Functions
         #region Time Card
         // GET: Time
+        [HttpGet]
         public ActionResult Time()
         {
             // Validate that a session exists, or re-route to login
@@ -33,6 +34,7 @@ namespace BusinessManagement.Controllers
          * Purpose: Input a new time card entry into the database
          * Author: Jordan Pitner 9/9/2018
          */
+        [HttpPost]
         public ActionResult CreateTimeEntry(TimeEvent timeEvent)
         {
             TimeEvent te = new TimeEvent();
@@ -61,6 +63,7 @@ namespace BusinessManagement.Controllers
         * Purpose: Update a time entry record with new information
         * Author: Jordan Pitner 9/9/2018
         */
+        [HttpPost]
         public ActionResult EditTimeEntry(TimeEvent timeEvent)
         {
             // Validate that a session exists, or re-route to login
@@ -73,7 +76,7 @@ namespace BusinessManagement.Controllers
 
             TimeEvent timeEntry = db.TimeEvents.Where(t => t.id == timeEvent.id).FirstOrDefault();
 
-            if (timeEntry != null)
+            if (timeEntry != null && timeEntry.User.Id == userID)
             {
                 timeEntry.start = timeEvent.start;
                 timeEntry.end = timeEvent.end;
@@ -93,6 +96,7 @@ namespace BusinessManagement.Controllers
         * Purpose: Delete a time entry record from the database
         * Author: Jordan Pitner 9/9/2018
         */
+        [HttpPost]
         public ActionResult DeleteTimeEntry(int id)
         {
             // Validate that a session exists, or re-route to login
@@ -105,7 +109,7 @@ namespace BusinessManagement.Controllers
 
             TimeEvent timeEntry = db.TimeEvents.Where(t => t.id == id).FirstOrDefault();
 
-            if (timeEntry != null)
+            if (timeEntry != null && timeEntry.User.Id == userID)
             {
                 // Commit to database
                 db.TimeEvents.Remove(timeEntry);
@@ -122,6 +126,7 @@ namespace BusinessManagement.Controllers
         * Purpose: Retrieve a time entry record from the database for display
         * Author: Jordan Pitner 9/9/2018
         */
+        [HttpPost]
         public ActionResult GetTimeEntry(int id)
         {
             // Validate that a session exists, or re-route to login
@@ -134,7 +139,7 @@ namespace BusinessManagement.Controllers
 
             TimeEvent timeEntry = db.TimeEvents.Where(t => t.id == id).FirstOrDefault();
 
-            if (timeEntry != null)
+            if (timeEntry != null && timeEntry.User.Id == userID)
             {
                 return Json(new { success = true, start = timeEntry.start, end = timeEntry.end });
             }
@@ -180,6 +185,7 @@ namespace BusinessManagement.Controllers
         #region Time Summary
         
         // GET: Summary
+        [HttpGet]
         public ActionResult Summary()
         {
             // Validate that a session exists, or re-route to login
@@ -198,6 +204,7 @@ namespace BusinessManagement.Controllers
         * Purpose: Build the model for the weekly summary and return its view + data
         * Author: Jordan Pitner 9/10/2018
         */
+        [HttpGet]
         public ActionResult WeeklySummary()
         {
             // Validate that a session exists, or re-route to login
@@ -247,6 +254,7 @@ namespace BusinessManagement.Controllers
          * Purpose: Build the model for the monthly summary and return its view + data
         * Author: Jordan Pitner 9/10/2018
         */
+        [HttpGet]
         public ActionResult MonthlySummary(string month, string year)
         {
             // Validate that a session exists, or re-route to login
@@ -290,6 +298,7 @@ namespace BusinessManagement.Controllers
             return View(summary);
         }
 
+        [HttpGet]
         public ActionResult YearlySummary(string year)
         {
             // Validate that a session exists, or re-route to login

@@ -392,6 +392,7 @@
     </Content>
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\User\Badges.cshtml" />
+    <Content Include="Views\Home\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

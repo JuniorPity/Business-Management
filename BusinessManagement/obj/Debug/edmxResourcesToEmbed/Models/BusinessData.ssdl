@@ -34,9 +34,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="EmployeeID" Type="nchar" MaxLength="12" Nullable="false" />
-    <Property Name="Password" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="Salt" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="EmployeeID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Salt" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="FirstName" Type="nchar" MaxLength="15" Nullable="false" />
     <Property Name="LastName" Type="nchar" MaxLength="15" Nullable="false" />
     <Property Name="DOB" Type="date" Nullable="false" />
@@ -46,7 +46,7 @@
     <Property Name="Skills" Type="nchar" MaxLength="250" />
     <Property Name="RegDate" Type="datetime" Nullable="false" />
     <Property Name="Position" Type="nchar" MaxLength="30" Nullable="false" />
-    <Property Name="Role" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Role" Type="nchar" MaxLength="15" Nullable="false" />
     <Property Name="OrganizationID" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_TimeEvent_User">

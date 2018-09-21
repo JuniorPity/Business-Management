@@ -55,7 +55,9 @@
                             @{
                                 int rand = 0;
                             }
-                            @foreach (string skill in Model.Skills.Split(','))
+                            @if (!string.IsNullOrEmpty(Model.Skills))
+                            {
+                            foreach (string skill in Model.Skills.Split(','))
                             {
                                 if (rand == 0)
                                 {
@@ -80,6 +82,7 @@
                                 }
 
                                 rand += 1;
+                            }
                             }
                         </div>
                     </div>
@@ -121,7 +124,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <p class="panelTextContactHighlight">@Model.Phone</p>
+                            <p class="panelTextContactHighlight">@String.Format("{0:(###) ###-####}", Int64.Parse(Model.Phone))</p>
                         </div>
                     </div>
                     <div class="row">
