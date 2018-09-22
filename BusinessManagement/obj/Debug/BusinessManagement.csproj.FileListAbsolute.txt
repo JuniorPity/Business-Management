@@ -241,6 +241,6 @@ E:\Documents\Coding Projects\BusinessManagement\Business-Management\BusinessMana
 E:\Documents\Coding Projects\BusinessManagement\Business-Management\BusinessManagement\bin\Microsoft.Owin.Security.Google.xml
 E:\Documents\Coding Projects\BusinessManagement\Business-Management\BusinessManagement\bin\Microsoft.Owin.Security.Twitter.xml
 E:\Documents\Coding Projects\BusinessManagement\Business-Management\BusinessManagement\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-E:\Documents\Coding Projects\BusinessManagement\Business-Management\BusinessManagement\obj\Debug\BusinessManagement.csprojResolveAssemblyReference.cache
 E:\Documents\Coding Projects\BusinessManagement\Business-Management\BusinessManagement\obj\Debug\BusinessManagement.dll
 E:\Documents\Coding Projects\BusinessManagement\Business-Management\BusinessManagement\obj\Debug\BusinessManagement.pdb
+E:\Documents\Coding Projects\BusinessManagement\Business-Management\BusinessManagement\obj\Debug\BusinessManagement.csprojResolveAssemblyReference.cache

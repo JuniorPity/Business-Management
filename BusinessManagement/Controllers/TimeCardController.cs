@@ -5,27 +5,22 @@ using System.Web;
 using System.Web.Mvc;
 using BusinessManagement.Models;
 using System.Globalization;
-
+using System.Web.Security;
+using BusinessManagement.Models.Authentication;
 namespace BusinessManagement.Controllers
 {
     public class TimeCardController : Controller
     {
         private BusinessDataEntities db = new BusinessDataEntities();
+        private MembershipAuth membership = new MembershipAuth();
 
         // Time Card Functions
         #region Time Card
         // GET: Time
         [HttpGet]
+        [Authorize]
         public ActionResult Time()
         {
-            // Validate that a session exists, or re-route to login
-            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
-
-            if (userID == -1)
-            {
-                return RedirectToAction("Login", "Home", null);
-            }
-
             return View();
         }
 
@@ -35,13 +30,15 @@ namespace BusinessManagement.Controllers
          * Author: Jordan Pitner 9/9/2018
          */
         [HttpPost]
+        [Authorize]
         public ActionResult CreateTimeEntry(TimeEvent timeEvent)
         {
             TimeEvent te = new TimeEvent();
             // Validate that a session exists, or re-route to login
-            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+            string userName = membership.GetCurrentUser(HttpContext.Request);
+            int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
-            if (userID == -1)
+            if (!(userID > 0))
             {
                 return RedirectToAction("Login", "Home", null);
             }
@@ -64,12 +61,14 @@ namespace BusinessManagement.Controllers
         * Author: Jordan Pitner 9/9/2018
         */
         [HttpPost]
+        [Authorize]
         public ActionResult EditTimeEntry(TimeEvent timeEvent)
         {
             // Validate that a session exists, or re-route to login
-            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+            string userName = membership.GetCurrentUser(HttpContext.Request);
+            int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
-            if (userID == -1)
+            if (!(userID > 0))
             {
                 return RedirectToAction("Login", "Home", null);
             }
@@ -97,12 +96,14 @@ namespace BusinessManagement.Controllers
         * Author: Jordan Pitner 9/9/2018
         */
         [HttpPost]
+        [Authorize]
         public ActionResult DeleteTimeEntry(int id)
         {
             // Validate that a session exists, or re-route to login
-            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+            string userName = membership.GetCurrentUser(HttpContext.Request);
+            int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
-            if (userID == -1)
+            if (!(userID > 0))
             {
                 return RedirectToAction("Login", "Home", null);
             }
@@ -127,12 +128,14 @@ namespace BusinessManagement.Controllers
         * Author: Jordan Pitner 9/9/2018
         */
         [HttpPost]
+        [Authorize]
         public ActionResult GetTimeEntry(int id)
         {
             // Validate that a session exists, or re-route to login
-            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+            string userName = membership.GetCurrentUser(HttpContext.Request);
+            int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
-            if (userID == -1)
+            if (!(userID > 0))
             {
                 return RedirectToAction("Login", "Home", null);
             }
@@ -152,12 +155,14 @@ namespace BusinessManagement.Controllers
         * Purpose: Return all entries for a given user (all time card entries)
         * Author: Jordan Pitner 9/9/2018
         */
+        [Authorize]
         public ActionResult GetTimeEntries()
         {
             // Validate that a session exists, or re-route to login
-            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+            string userName = membership.GetCurrentUser(HttpContext.Request);
+            int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
-            if (userID == -1)
+            if (!(userID > 0))
             {
                 return RedirectToAction("Login", "Home", null);
             }
@@ -186,12 +191,14 @@ namespace BusinessManagement.Controllers
         
         // GET: Summary
         [HttpGet]
+        [Authorize]
         public ActionResult Summary()
         {
             // Validate that a session exists, or re-route to login
-            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+            string userName = membership.GetCurrentUser(HttpContext.Request);
+            int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
-            if (userID == -1)
+            if (!(userID > 0))
             {
                 return RedirectToAction("Login", "Home", null);
             }
@@ -205,12 +212,14 @@ namespace BusinessManagement.Controllers
         * Author: Jordan Pitner 9/10/2018
         */
         [HttpGet]
+        [Authorize]
         public ActionResult WeeklySummary()
         {
             // Validate that a session exists, or re-route to login
-            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+            string userName = membership.GetCurrentUser(HttpContext.Request);
+            int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
-            if(userID == -1)
+            if (!(userID > 0))
             {
                 return RedirectToAction("Login", "Home", null);
             }
@@ -255,12 +264,14 @@ namespace BusinessManagement.Controllers
         * Author: Jordan Pitner 9/10/2018
         */
         [HttpGet]
+        [Authorize]
         public ActionResult MonthlySummary(string month, string year)
         {
             // Validate that a session exists, or re-route to login
-            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+            string userName = membership.GetCurrentUser(HttpContext.Request);
+            int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
-            if (userID == -1)
+            if (!(userID > 0))
             {
                 return RedirectToAction("Login", "Home", null);
             }
@@ -299,12 +310,14 @@ namespace BusinessManagement.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult YearlySummary(string year)
         {
             // Validate that a session exists, or re-route to login
-            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+            string userName = membership.GetCurrentUser(HttpContext.Request);
+            int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
-            if (userID == -1)
+            if (!(userID > 0))
             {
                 return RedirectToAction("Login", "Home", null);
             }

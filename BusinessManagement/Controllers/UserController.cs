@@ -5,12 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using BusinessManagement.Models;
 using System.Globalization;
-
+using BusinessManagement.Models.Authentication;
 namespace BusinessManagement.Controllers
 {
     public class UserController : Controller
     {
         private BusinessDataEntities db = new BusinessDataEntities();
+        private MembershipAuth membership = new MembershipAuth();
 
         // Profile Pages
         #region Profile Pages
@@ -19,6 +20,7 @@ namespace BusinessManagement.Controllers
         * Purpose: Get the user information for the profile page display
         * Author: Jordan Pitner 9/20/2018
         */
+        [Authorize]
         public ActionResult ProfilePage(string id = null)
         {
             int userID;
@@ -28,9 +30,10 @@ namespace BusinessManagement.Controllers
             if (id == null)
             {
                 // Validate that a session exists, or re-route to login
-                userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+                string userName = membership.GetCurrentUser(HttpContext.Request);
+                userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
-                if (userID == -1)
+                if (!(userID > 0))
                 {
                     return RedirectToAction("Login", "Home", null);
                 }
@@ -56,12 +59,14 @@ namespace BusinessManagement.Controllers
         }
         #endregion
 
+        [Authorize]
         public ActionResult Badges()
         {
             // Validate that a session exists, or re-route to login
-            int userID = Session["UserID"] != null ? int.Parse(Session["UserID"].ToString()) : -1;
+            string userName = membership.GetCurrentUser(HttpContext.Request);
+            int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
-            if (userID == -1)
+            if (!(userID > 0))
             {
                 return RedirectToAction("Login", "Home", null);
             }

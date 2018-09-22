@@ -169,7 +169,7 @@
             todayBtn: false,
         });
     });
-   
+
     /*
     Function: CreateTimeEntry()
     Description: Ajax function to call back to the MVC controller and post the newly created
@@ -300,12 +300,11 @@
 
     /*
    Function: GetTimeEntry()
-   Description: Ajax function to populate previously entered data to potentially edit 
+   Description: Ajax function to populate previously entered data to potentially edit
    Date: 9/9/2018
    Author: Jordan Pitner
    */
-    function GetTimeEntry(event)
-    {
+    function GetTimeEntry(event) {
         $.ajax({
             type: 'POST',
             url: "@Url.Content("/TimeCard/GetTimeEntry/")",
@@ -338,7 +337,7 @@
         });
     }
 
-    $('#viewSummaryBtn').click(function(){
+    $('#viewSummaryBtn').click(function () {
         document.location = '@Url.Action("Summary", "TimeCard")';
     })
 </script>

@@ -687,3 +687,10 @@ input[readonly].pointer-cursor {
 .shadowBox{
     background-image: linear-gradient(90deg, #21283e, #4c5c8c);
 }
+
+.profileTopBar{
+    height: 440px;
+    /*background-image: linear-gradient(90deg, #21283e, #4c5c8c);*/
+    padding-top: 90px;
+    width: 100%;
+}

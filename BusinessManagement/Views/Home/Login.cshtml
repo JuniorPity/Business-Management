@@ -15,9 +15,9 @@
     <link href="~/Content/Login.css" rel="stylesheet" />
 </head>
 <body>
-    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    @using (Html.BeginForm("Login", "Home", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post, null))
     {
-        @Html.AntiForgeryToken();
+                    @Html.AntiForgeryToken();
         <div class="row profileTopBar">
             <div class="col-md-4 col-md-offset-4 text-center">
                 <div class="panel panel-default infoPanel">
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         @if (ViewBag.Error == true)
-                        {
+            {
                             <div id="errorRow" class="row row-padding">
                                 <div class="col-md-10 col-md-offset-1">
                                     <div class="alert alert-danger error" role="alert">
@@ -68,7 +68,7 @@
     }
     <div class="row profileTopBarTransparent">
         <div class="col-md-2 col-md-offset-5">
-            <button class="btn btn-info" style="width:100%" onclick="location.href='@Url.Action("SignUp", "Home")'">Sign Up</button>
+            <button class="btn btn-info" style="width:100%" onclick="location.href='@Url.Action("SignUp", "Home", new { invite = "Hello" })'">Sign Up</button>
         </div>
     </div>
 </body>
