@@ -11,6 +11,11 @@
         <AssociationConnector Association="BusinessDataModel.FK_TimeEvent_User" />
         <EntityTypeShape EntityType="BusinessDataModel.Organization" Width="1.5" PointX="0.75" PointY="3.75" />
         <AssociationConnector Association="BusinessDataModel.FK_User_Organization" />
+        <EntityTypeShape EntityType="BusinessDataModel.Contact" Width="1.5" PointX="5.75" PointY="4" />
+        <EntityTypeShape EntityType="BusinessDataModel.InviteCode" Width="1.5" PointX="3" PointY="7.25" />
+        <AssociationConnector Association="BusinessDataModel.FK_Contact_ContactID" />
+        <AssociationConnector Association="BusinessDataModel.FK_Contact_OwnerID" />
+        <AssociationConnector Association="BusinessDataModel.FK_InviteCode_Organization" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -123,12 +123,10 @@ namespace BusinessManagement.Controllers
         * Author: Jordan Pitner 9/20/2018
         */
         [HttpPost]
-        public ActionResult SignUp(User user)
+        public ActionResult SignUp(User user, string inviteCode)
         {
             if (user != null)
             {
-                user.OrganizationID = 1;
-
                 if (ModelState.IsValid)
                 {
                     // Generate salt and salted/hashed password for db storage
@@ -139,8 +137,38 @@ namespace BusinessManagement.Controllers
                     user.Salt = salt;
                     user.Role = "Standard";
                     user.Position = "N/A";
-                    user.EmployeeID = user.FirstName[0] + user.LastName[0] + GenerateIdNumber();
+                    user.EmployeeID = user.FirstName[0] + user.LastName[0] + GenerateIdNumber(10);
                     user.RegDate = DateTime.Now;
+
+                    if (string.IsNullOrEmpty(inviteCode))
+                    {
+                        Organization org = new Organization();
+
+                        org.Label = user.Organization.Label;
+                        org.Registered = DateTime.Now;
+                        org.CodesCount = 1;
+                        org.OrganizationID = org.Label + "#" + GenerateIdNumber(8);
+
+                        db.Organizations.Add(org);
+                        db.SaveChanges();
+
+                        user.Organization = org;
+                        user.OrganizationID = org.Id;
+                    }
+                    else
+                    {
+                        InviteCode code = db.InviteCodes.FirstOrDefault(i => i.Code == inviteCode);
+
+                        if(code != null && !code.IsExpired)
+                        {
+                            user.OrganizationID = code.OrganizationID;
+
+                            code.IsExpired = true;
+                            code.DateExpired = DateTime.Now;
+
+                            db.SaveChanges();
+                        }
+                    }
 
                     // Commit changes
                     db.Users.Add(user);
@@ -148,7 +176,7 @@ namespace BusinessManagement.Controllers
                 }
             }
 
-            return View();
+            return View("Login");
         }
         #endregion
 
@@ -198,13 +226,13 @@ namespace BusinessManagement.Controllers
         * Purpose: Generate a random series of numbers for EmployerID numbers
         * Author: Jordan Pitner 9/20/2018
         */
-        private string GenerateIdNumber()
+        private string GenerateIdNumber(int size)
         {
             Random random = new Random();
             const string chars = "0123456789";
 
             // Get random numerics from the char string
-            return new string(Enumerable.Repeat(chars, 10)
+            return new string(Enumerable.Repeat(chars, size)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
         #endregion

@@ -24,6 +24,20 @@
       <End Role="Organization" EntitySet="Organizations" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="Contacts" EntityType="BusinessDataModel.Contact" />
+    <EntitySet Name="InviteCodes" EntityType="BusinessDataModel.InviteCode" />
+    <AssociationSet Name="FK_Contact_ContactID" Association="BusinessDataModel.FK_Contact_ContactID">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contact_OwnerID" Association="BusinessDataModel.FK_Contact_OwnerID">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InviteCode_Organization" Association="BusinessDataModel.FK_InviteCode_Organization">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="InviteCode" EntitySet="InviteCodes" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Badge">
     <Key>
@@ -55,6 +69,8 @@
     <NavigationProperty Name="TimeEvents" Relationship="BusinessDataModel.FK_TimeEvent_User" FromRole="User" ToRole="TimeEvent" />
     <Property Name="OrganizationID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Organization" Relationship="BusinessDataModel.FK_User_Organization" FromRole="User" ToRole="Organization" />
+    <NavigationProperty Name="Contacts" Relationship="BusinessDataModel.FK_Contact_ContactID" FromRole="User" ToRole="Contact" />
+    <NavigationProperty Name="Contacts1" Relationship="BusinessDataModel.FK_Contact_OwnerID" FromRole="User" ToRole="Contact" />
   </EntityType>
   <Association Name="FK_TimeEvent_User">
     <End Type="BusinessDataModel.User" Role="User" Multiplicity="1" />
@@ -78,6 +94,7 @@
     <Property Name="Registered" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="CodesCount" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Users" Relationship="BusinessDataModel.FK_User_Organization" FromRole="Organization" ToRole="User" />
+    <NavigationProperty Name="InviteCodes" Relationship="BusinessDataModel.FK_InviteCode_Organization" FromRole="Organization" ToRole="InviteCode" />
   </EntityType>
   <Association Name="FK_User_Organization">
     <End Type="BusinessDataModel.Organization" Role="Organization" Multiplicity="1" />
@@ -87,6 +104,66 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="User">
+        <PropertyRef Name="OrganizationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="OwnerID" Type="Int32" Nullable="false" />
+    <Property Name="ContactID" Type="Int32" Nullable="false" />
+    <Property Name="IsFavorite" Type="Boolean" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="User" Relationship="BusinessDataModel.FK_Contact_ContactID" FromRole="Contact" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="BusinessDataModel.FK_Contact_OwnerID" FromRole="Contact" ToRole="User" />
+  </EntityType>
+  <EntityType Name="InviteCode">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="OrganizationID" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsExpired" Type="Boolean" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateExpired" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Organization" Relationship="BusinessDataModel.FK_InviteCode_Organization" FromRole="InviteCode" ToRole="Organization" />
+  </EntityType>
+  <Association Name="FK_Contact_ContactID">
+    <End Type="BusinessDataModel.User" Role="User" Multiplicity="1" />
+    <End Type="BusinessDataModel.Contact" Role="Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="ContactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contact_OwnerID">
+    <End Type="BusinessDataModel.User" Role="User" Multiplicity="1" />
+    <End Type="BusinessDataModel.Contact" Role="Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InviteCode_Organization">
+    <End Type="BusinessDataModel.Organization" Role="Organization" Multiplicity="1" />
+    <End Type="BusinessDataModel.InviteCode" Role="InviteCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InviteCode">
         <PropertyRef Name="OrganizationID" />
       </Dependent>
     </ReferentialConstraint>

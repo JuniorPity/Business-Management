@@ -18,6 +18,8 @@ namespace BusinessManagement.Models
         public User()
         {
             this.TimeEvents = new HashSet<TimeEvent>();
+            this.Contacts = new HashSet<Contact>();
+            this.Contacts1 = new HashSet<Contact>();
         }
     
         public int Id { get; set; }
@@ -39,5 +41,9 @@ namespace BusinessManagement.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TimeEvent> TimeEvents { get; set; }
         public virtual Organization Organization { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contact> Contacts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contact> Contacts1 { get; set; }
     }
 }

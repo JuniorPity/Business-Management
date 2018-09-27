@@ -29,5 +29,7 @@ namespace BusinessManagement.Models
         public virtual DbSet<Badge> Badges { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Organization> Organizations { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<InviteCode> InviteCodes { get; set; }
     }
 }

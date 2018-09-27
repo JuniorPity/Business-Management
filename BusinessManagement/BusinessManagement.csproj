@@ -204,6 +204,7 @@
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TimeCardController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -229,8 +230,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessData.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Contact.cs">
+      <DependentUpon>BusinessData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\InviteCode.cs">
+      <DependentUpon>BusinessData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Organization.cs">
       <DependentUpon>BusinessData.tt</DependentUpon>
@@ -396,6 +403,7 @@
     <Content Include="Views\User\Badges.cshtml" />
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Contacts\AllContacts.cshtml" />
+    <Content Include="Views\Settings\UserSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

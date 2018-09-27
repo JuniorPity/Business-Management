@@ -1,7 +1,7 @@
 ﻿@model BusinessManagement.Models.User
 @{
     Layout = null;
-    var code = Request.Params["invite"];
+    string code = Request.Params["invite"];
 }
 <!DOCTYPE html>
 
@@ -19,7 +19,7 @@
     <script src="~/Scripts/Login.js" type="text/javascript"></script>
 </head>
 <body>
-    @using (Html.BeginForm("SignUp", "Home", FormMethod.Post, new { id = "signUpForm" }))
+    @using (Html.BeginForm("SignUp", "Home", new { inviteCode = Request.Params["invite"] }, FormMethod.Post, new { id = "signUpForm" }))
     {
         @Html.AntiForgeryToken();
         <div class="row profileTopBar">
