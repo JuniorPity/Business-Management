@@ -11,7 +11,8 @@ namespace BusinessManagement.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Drawing;
+
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,6 +21,7 @@ namespace BusinessManagement.Models
             this.TimeEvents = new HashSet<TimeEvent>();
             this.Contacts = new HashSet<Contact>();
             this.Contacts1 = new HashSet<Contact>();
+            this.UserImages = new HashSet<UserImage>();
         }
     
         public int Id { get; set; }
@@ -37,7 +39,7 @@ namespace BusinessManagement.Models
         public string Position { get; set; }
         public string Role { get; set; }
         public int OrganizationID { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TimeEvent> TimeEvents { get; set; }
         public virtual Organization Organization { get; set; }
@@ -45,5 +47,7 @@ namespace BusinessManagement.Models
         public virtual ICollection<Contact> Contacts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contact> Contacts1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserImage> UserImages { get; set; }
     }
 }

@@ -235,6 +235,7 @@
     </Compile>
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ImageProcessor.cs" />
     <Compile Include="Models\InviteCode.cs">
       <DependentUpon>BusinessData.tt</DependentUpon>
     </Compile>
@@ -247,6 +248,9 @@
       <DependentUpon>BusinessData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
+      <DependentUpon>BusinessData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserImage.cs">
       <DependentUpon>BusinessData.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

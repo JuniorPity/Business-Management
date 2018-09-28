@@ -31,5 +31,6 @@ namespace BusinessManagement.Models
         public virtual DbSet<Organization> Organizations { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<InviteCode> InviteCodes { get; set; }
+        public virtual DbSet<UserImage> UserImages { get; set; }
     }
 }

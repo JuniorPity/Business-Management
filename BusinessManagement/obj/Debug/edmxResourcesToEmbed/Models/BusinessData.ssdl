@@ -37,7 +37,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="OrganizationID" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Label" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Registered" Type="date" Nullable="false" />
+    <Property Name="Registered" Type="datetime" Nullable="false" />
     <Property Name="CodesCount" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TimeEvent">
@@ -69,6 +69,14 @@
     <Property Name="Position" Type="nchar" MaxLength="30" Nullable="false" />
     <Property Name="Role" Type="nchar" MaxLength="15" Nullable="false" />
     <Property Name="OrganizationID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Binary" Type="varbinary(max)" Nullable="false" />
   </EntityType>
   <Association Name="FK_Contact_ContactID">
     <End Role="User" Type="Self.User" Multiplicity="1" />
@@ -130,6 +138,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_UserImage_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserImage" Type="Self.UserImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserImage">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="BusinessDataModelStoreContainer">
     <EntitySet Name="Badge" EntityType="Self.Badge" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
@@ -137,6 +157,7 @@
     <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TimeEvent" EntityType="Self.TimeEvent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserImage" EntityType="Self.UserImage" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Contact_ContactID" Association="Self.FK_Contact_ContactID">
       <End Role="User" EntitySet="User" />
       <End Role="Contact" EntitySet="Contact" />
@@ -156,6 +177,10 @@
     <AssociationSet Name="FK_User_Organization" Association="Self.FK_User_Organization">
       <End Role="Organization" EntitySet="Organization" />
       <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserImage_User" Association="Self.FK_UserImage_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserImage" EntitySet="UserImage" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

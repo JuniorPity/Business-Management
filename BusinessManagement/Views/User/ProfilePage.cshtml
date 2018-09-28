@@ -9,7 +9,17 @@
 <body>
     <div class="row profileTopBar">
         <div class="col-md-6 col-md-offset-3 text-center">
-            <img class="profilePicture" src="~/Images/spanLogoLogin.png" />
+            @if (Model.UserImages != null && Model.UserImages.Count != 0)
+            {
+                var base64 = Convert.ToBase64String(Model.UserImages.FirstOrDefault().Binary);
+                var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+
+                <img src="@imgSrc" class="profilePicture" />
+            }
+            else
+            {
+                <img src="~/Images/UserIcon.png" class="profilePicture" />
+            }
         </div>
     </div>
     <div class="row userNameDetailsRow">
@@ -94,7 +104,7 @@
                     <div class="row">
                         @for (int i = 0; i < 6; i++)
                         {
-                            <div class="col-sm-2">
+                            <div class="col-sm-2 text-center">
                                 <img src="~/Images/spanLogo.png" width="100" />
                             </div>
                         }

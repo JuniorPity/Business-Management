@@ -18,6 +18,9 @@
     <link href="~/Content/basic.css" rel="stylesheet" />
 </head>
 <body style="background-color: transparent">
+@using (Html.BeginForm("EditProfile", "Settings", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m.Id)
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default infoPanel">
@@ -30,12 +33,22 @@
                     <hr />
                     <div class="row">
                         <div class="col-md-1 pull-right">
-                            <img src="~/Images/UserIcon.png" width="70" />
+                            @if (Model.UserImages != null && Model.UserImages.Count != 0)
+                            {
+                                var base64 = Convert.ToBase64String(Model.UserImages.FirstOrDefault().Binary);
+                                var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+
+                                <img src = "@imgSrc" width = "70" />
+                            }
+                            else
+                            {
+                                <img src="~/Images/UserIcon.png" width="70" />
+                            }
                         </div>
                         <div class="col-md-2 col-md-offset-5 pull-right">
                             <div class="form-group">
                                 <label for="exampleInputFile">File input</label>
-                                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                                <input type="file" class="form-control-file" id="profilePicture" name="profilePicture">
                             </div>
                         </div>
                     </div>
@@ -104,12 +117,13 @@
                     <br />
                     <div class="row">
                         <div class="col-md-2 pull-right">
-                            <input type="submit" value="Save Changes" class="btn btn-success pull-right disabled"/>
+                            <input type="submit" value="Save Changes" class="btn btn-success pull-right"/>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+}
 </body>
 </html>
