@@ -257,6 +257,7 @@
     <Content Include="Content\basic.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Login.css" />
+    <Content Include="Content\Settings.css" />
     <Content Include="Content\User.css" />
     <Content Include="Scripts\Login.js" />
     <Content Include="Content\Summary.css" />
@@ -367,6 +368,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Settings.js" />
     <Content Include="Scripts\Summary.js" />
     <Content Include="Scripts\TimeCard.js" />
     <Content Include="Scripts\Weather\jquery.simpleWeather.js" />
@@ -404,6 +406,7 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Contacts\AllContacts.cshtml" />
     <Content Include="Views\Settings\UserSettings.cshtml" />
+    <Content Include="Views\Settings\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

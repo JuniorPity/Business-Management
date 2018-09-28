@@ -1,0 +1,115 @@
+﻿@model BusinessManagement.Models.User
+@{Layout = null;}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit Profile</title>
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Scripts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/Login.js"></script>
+    <link href="~/Content/basic.css" rel="stylesheet" />
+</head>
+<body style="background-color: transparent">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default infoPanel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 pull-right">
+                            <p style="font-family:Arial"><i class="fa fa-user fa-lg"></i><strong>&nbsp; &nbsp;Personal Information</strong></p>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-1 pull-right">
+                            <img src="~/Images/UserIcon.png" width="70" />
+                        </div>
+                        <div class="col-md-2 col-md-offset-5 pull-right">
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 text-right">
+                            <p style="font-family:Arial"><strong>First Name:</strong></p>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-1 text-right">
+                            <p style="font-family:Arial"><strong>Last Name:</strong></p>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-1 text-right">
+                            <p style="font-family:Arial"><strong>Skills:</strong></p>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(m => m.Skills, new { @class = "form-control" })
+                            <small id="skillsHelp" class="form-text text-muted">Note: Separate each skill and/or word with a comma.</small>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-1 text-right">
+                            <p style="font-family:Arial"><strong>About Me:</strong></p>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(m => m.AboutMe, new { @class = "form-control", @style = "resize:none" })
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p style="font-family:Arial"><i class="fa fa-address-book fa-lg"></i><strong>&nbsp; &nbsp;Contact Information</strong></p>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-1 text-right">
+                            <p style="font-family:Arial"><strong>Email:</strong></p>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-1 text-right">
+                            <p style="font-family:Arial"><strong>Phone: </strong></p>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-2 pull-right">
+                            <input type="submit" value="Save Changes" class="btn btn-success pull-right disabled"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

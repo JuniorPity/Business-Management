@@ -30,7 +30,7 @@ $(function () {
 });
 
 /*
-Purpose: Change window content when logout is selected
+Purpose: Change window content when profile is selected
 Author: Jordan Pitner 9/10/2018
 */
 $(function () {
@@ -40,7 +40,7 @@ $(function () {
 });
 
 /*
-Purpose: Change window content when logout is selected
+Purpose: Change window content when badges is selected
 Author: Jordan Pitner 9/10/2018
 */
 $(function () {
@@ -48,6 +48,17 @@ $(function () {
         window.parent.location.href = $("#badgesValue").val();
     });
 });
+
+/*
+Purpose: Change window content when settings is selected
+Author: Jordan Pitner 9/27/2018
+*/
+$(function () {
+    $("#settings").on('click', function () {
+        window.parent.location.href = $("#settingsValue").val();
+    });
+});
+
 
 /*
 Purpose: Mouseup function to make the user pane disappear on click away

@@ -1,0 +1,24 @@
+﻿.settings:hover{
+    background-color:lightgray;
+    cursor: pointer;
+    color: white;
+}
+
+.settingsActive{
+    background-color:#6e82bf;
+    cursor: pointer;
+    color: white;
+}
+
+.settingsPanel{
+    margin-top: 0px;
+}
+
+.settingsIFrame{
+    width: 100%;
+    height: 80vh;
+}
+
+.editorRow{
+    padding: 100px;
+}

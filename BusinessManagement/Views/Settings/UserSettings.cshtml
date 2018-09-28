@@ -1,17 +1,25 @@
-﻿
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>UserSettings</title>
+    <link href="~/Content/Settings.css" rel="stylesheet" />\
+    <script src="~/Scripts/Settings.js"></script>
 </head>
-<body>
-    <div> 
+<body style="background-color: transparent">
+    @Html.Hidden("profileValue", Url.Action("EditProfile", "Settings"))
+
+    <div class="row profileTopBar">
+        <div class="col-md-2">
+            <ul class="list-group settingsPanel">
+                <li id="myProfile" class="list-group-item settingsActive"><i class="fa fa-user fa-lg"></i>&nbsp; My Profile</li>
+                <li id="appearance" class="list-group-item settings"><i class="fa fa-paint-brush fa-lg"></i>&nbsp; Appearance</li>
+                <li id="notifications" class="list-group-item settings"><i class="fa fa-inbox fa-lg"></i>&nbsp; Notifications</li>
+                <li class="list-group-item settings"><i class="fa fa-user fa-lg"></i>&nbsp; My Profile</li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <iframe id="settingsFrame" style="overflow:hidden" src='@Url.Action("EditProfile", "Settings")' frameborder="0" class="settingsIFrame"></iframe>
+        </div>
     </div>
 </body>
 </html>
