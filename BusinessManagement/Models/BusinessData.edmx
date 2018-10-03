@@ -60,19 +60,19 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeID" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmployeeID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Salt" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="FirstName" Type="nchar" MaxLength="15" Nullable="false" />
-          <Property Name="LastName" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DOB" Type="date" Nullable="false" />
-          <Property Name="Email" Type="nchar" MaxLength="30" Nullable="false" />
-          <Property Name="Phone" Type="nchar" MaxLength="20" Nullable="false" />
-          <Property Name="AboutMe" Type="nchar" MaxLength="250" />
-          <Property Name="Skills" Type="nchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AboutMe" Type="nvarchar" MaxLength="250" />
+          <Property Name="Skills" Type="nvarchar" MaxLength="250" />
           <Property Name="RegDate" Type="datetime" Nullable="false" />
-          <Property Name="Position" Type="nchar" MaxLength="30" Nullable="false" />
-          <Property Name="Role" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="Position" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="OrganizationID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UserImage">
@@ -250,19 +250,19 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeID" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="EmployeeID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Salt" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="AboutMe" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
-          <Property Name="Skills" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AboutMe" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Skills" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Position" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="Role" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="Position" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TimeEvents" Relationship="BusinessDataModel.FK_TimeEvent_User" FromRole="User" ToRole="TimeEvent" />
           <Property Name="OrganizationID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Organization" Relationship="BusinessDataModel.FK_User_Organization" FromRole="User" ToRole="Organization" />

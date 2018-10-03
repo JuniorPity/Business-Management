@@ -55,19 +55,19 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="EmployeeID" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="EmployeeID" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Salt" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="FirstName" Type="nchar" MaxLength="15" Nullable="false" />
-    <Property Name="LastName" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DOB" Type="date" Nullable="false" />
-    <Property Name="Email" Type="nchar" MaxLength="30" Nullable="false" />
-    <Property Name="Phone" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="AboutMe" Type="nchar" MaxLength="250" />
-    <Property Name="Skills" Type="nchar" MaxLength="250" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AboutMe" Type="nvarchar" MaxLength="250" />
+    <Property Name="Skills" Type="nvarchar" MaxLength="250" />
     <Property Name="RegDate" Type="datetime" Nullable="false" />
-    <Property Name="Position" Type="nchar" MaxLength="30" Nullable="false" />
-    <Property Name="Role" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="OrganizationID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UserImage">

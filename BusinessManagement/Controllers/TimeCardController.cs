@@ -12,7 +12,6 @@ namespace BusinessManagement.Controllers
     public class TimeCardController : Controller
     {
         private BusinessDataEntities db = new BusinessDataEntities();
-        private MembershipAuth membership = new MembershipAuth();
 
         // Time Card Functions
         #region Time Card
@@ -35,7 +34,7 @@ namespace BusinessManagement.Controllers
         {
             TimeEvent te = new TimeEvent();
             // Validate that a session exists, or re-route to login
-            string userName = membership.GetCurrentUser(HttpContext.Request);
+            string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
             int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
             if (!(userID > 0))
@@ -65,7 +64,7 @@ namespace BusinessManagement.Controllers
         public ActionResult EditTimeEntry(TimeEvent timeEvent)
         {
             // Validate that a session exists, or re-route to login
-            string userName = membership.GetCurrentUser(HttpContext.Request);
+            string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
             int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
             if (!(userID > 0))
@@ -100,7 +99,7 @@ namespace BusinessManagement.Controllers
         public ActionResult DeleteTimeEntry(int id)
         {
             // Validate that a session exists, or re-route to login
-            string userName = membership.GetCurrentUser(HttpContext.Request);
+            string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
             int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
             if (!(userID > 0))
@@ -132,7 +131,7 @@ namespace BusinessManagement.Controllers
         public ActionResult GetTimeEntry(int id)
         {
             // Validate that a session exists, or re-route to login
-            string userName = membership.GetCurrentUser(HttpContext.Request);
+            string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
             int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
             if (!(userID > 0))
@@ -159,7 +158,7 @@ namespace BusinessManagement.Controllers
         public ActionResult GetTimeEntries()
         {
             // Validate that a session exists, or re-route to login
-            string userName = membership.GetCurrentUser(HttpContext.Request);
+            string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
             int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
             if (!(userID > 0))
@@ -195,7 +194,7 @@ namespace BusinessManagement.Controllers
         public ActionResult Summary()
         {
             // Validate that a session exists, or re-route to login
-            string userName = membership.GetCurrentUser(HttpContext.Request);
+            string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
             int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
             if (!(userID > 0))
@@ -216,7 +215,7 @@ namespace BusinessManagement.Controllers
         public ActionResult WeeklySummary()
         {
             // Validate that a session exists, or re-route to login
-            string userName = membership.GetCurrentUser(HttpContext.Request);
+            string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
             int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
             if (!(userID > 0))
@@ -268,7 +267,7 @@ namespace BusinessManagement.Controllers
         public ActionResult MonthlySummary(string month, string year)
         {
             // Validate that a session exists, or re-route to login
-            string userName = membership.GetCurrentUser(HttpContext.Request);
+            string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
             int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
             if (!(userID > 0))
@@ -314,7 +313,7 @@ namespace BusinessManagement.Controllers
         public ActionResult YearlySummary(string year)
         {
             // Validate that a session exists, or re-route to login
-            string userName = membership.GetCurrentUser(HttpContext.Request);
+            string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
             int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
             if (!(userID > 0))

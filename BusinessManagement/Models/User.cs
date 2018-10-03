@@ -11,8 +11,7 @@ namespace BusinessManagement.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Drawing;
-
+    
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -39,7 +38,7 @@ namespace BusinessManagement.Models
         public string Position { get; set; }
         public string Role { get; set; }
         public int OrganizationID { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TimeEvent> TimeEvents { get; set; }
         public virtual Organization Organization { get; set; }

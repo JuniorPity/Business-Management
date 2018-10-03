@@ -11,7 +11,6 @@ namespace BusinessManagement.Controllers
     public class UserController : Controller
     {
         private BusinessDataEntities db = new BusinessDataEntities();
-        private MembershipAuth membership = new MembershipAuth();
 
         // Profile Pages
         #region Profile Pages
@@ -30,7 +29,7 @@ namespace BusinessManagement.Controllers
             if (id == null)
             {
                 // Validate that a session exists, or re-route to login
-                string userName = membership.GetCurrentUser(HttpContext.Request);
+                string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
                 userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
                 if (!(userID > 0))
@@ -63,7 +62,7 @@ namespace BusinessManagement.Controllers
         public ActionResult Badges()
         {
             // Validate that a session exists, or re-route to login
-            string userName = membership.GetCurrentUser(HttpContext.Request);
+            string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
             int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
             if (!(userID > 0))

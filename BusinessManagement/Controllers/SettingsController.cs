@@ -12,7 +12,6 @@ namespace BusinessManagement.Controllers
     public class SettingsController : Controller
     {
         BusinessDataEntities db = new BusinessDataEntities();
-        MembershipAuth membership = new MembershipAuth();
 
         // GET: Settings
         [Authorize]
@@ -34,7 +33,7 @@ namespace BusinessManagement.Controllers
         [HttpGet]
         public ActionResult EditProfile()
         {
-            string userName = membership.GetCurrentUser(HttpContext.Request);
+            string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
             int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
             if (!(userID > 0))
@@ -61,7 +60,7 @@ namespace BusinessManagement.Controllers
             if(ModelState.IsValid)
             {
                 // Validation that some other user isn't trying to access information
-                string userName = membership.GetCurrentUser(HttpContext.Request);
+                string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
                 User accessUser = db.Users.FirstOrDefault(u => u.Email == userName);
 
                 ImageProcessor processor = new ImageProcessor();

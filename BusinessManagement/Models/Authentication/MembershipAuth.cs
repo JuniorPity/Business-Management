@@ -8,7 +8,7 @@ namespace BusinessManagement.Models.Authentication
 {
     public class MembershipAuth
     {
-        public string GetCurrentUser(HttpRequestBase request)
+        public static string GetCurrentUser(HttpRequestBase request)
         {
             string cookieName = FormsAuthentication.FormsCookieName; 
 

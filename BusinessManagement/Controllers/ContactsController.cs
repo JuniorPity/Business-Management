@@ -15,7 +15,7 @@ namespace BusinessManagement.Controllers
         [Authorize]
         public ActionResult AllContacts()
         {
-            string userName = membership.GetCurrentUser(HttpContext.Request);
+            string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
             int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
             if (!(userID > 0))

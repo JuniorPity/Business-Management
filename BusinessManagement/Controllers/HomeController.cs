@@ -18,12 +18,11 @@ namespace BusinessManagement.Controllers
     public class HomeController : Controller
     {
         private BusinessDataEntities db = new BusinessDataEntities();
-        private MembershipAuth membership = new MembershipAuth();
 
         public ActionResult UserPane()
         {
             // Validate that a session exists, or re-route to login
-            string userName = membership.GetCurrentUser(HttpContext.Request);
+            string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
             int userID = db.Users.FirstOrDefault(u => u.Email == userName).Id;
 
             if (!(userID > 0))
