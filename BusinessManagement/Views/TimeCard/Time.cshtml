@@ -20,8 +20,8 @@
     </div>
 
     <!-- Timecard Frame-->
-    <div id="calendarPanel" class="panel panel-primary" style="border: 0px; margin-top: 125px; margin-left: 25px; margin-right: 25px; margin-bottom: 10px">
-        <div class="panel-body">
+    <div id="calendarPanel" class="panel panel-primary" style="border: 0px; margin-top: 125px; margin-left: 25px; margin-right: 25px; margin-bottom: 10px; height: 80vh">
+        <div class="panel-body" style="height: 80vh">
             <div id="calendar">
 
             </div>
@@ -127,7 +127,7 @@
 <script>
     $(document).ready(function () {
         $('#calendar').fullCalendar({
-            height: 745,
+            height: "parent",
             header: {
                 left: 'prev,next',
                 center: 'title',

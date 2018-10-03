@@ -12,26 +12,18 @@ namespace BusinessManagement.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Organization
+    public partial class LogEventType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Organization()
+        public LogEventType()
         {
-            this.Users = new HashSet<User>();
-            this.InviteCodes = new HashSet<InviteCode>();
             this.LogEvents = new HashSet<LogEvent>();
         }
     
         public int Id { get; set; }
-        public string OrganizationID { get; set; }
+        public string EnumID { get; set; }
         public string Label { get; set; }
-        public System.DateTime Registered { get; set; }
-        public int CodesCount { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InviteCode> InviteCodes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LogEvent> LogEvents { get; set; }
     }

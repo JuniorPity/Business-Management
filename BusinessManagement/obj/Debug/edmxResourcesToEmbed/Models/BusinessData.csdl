@@ -47,6 +47,20 @@
       <End Role="User" EntitySet="Users" />
       <End Role="InviteCode" EntitySet="InviteCodes" />
     </AssociationSet>
+    <EntitySet Name="LogEventTypes" EntityType="BusinessDataModel.LogEventType" />
+    <EntitySet Name="LogEvents" EntityType="BusinessDataModel.LogEvent" />
+    <AssociationSet Name="FK_LogEvent_LogEventType" Association="BusinessDataModel.FK_LogEvent_LogEventType">
+      <End Role="LogEventType" EntitySet="LogEventTypes" />
+      <End Role="LogEvent" EntitySet="LogEvents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LogEvent_Organization" Association="BusinessDataModel.FK_LogEvent_Organization">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="LogEvent" EntitySet="LogEvents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LogEvent_User" Association="BusinessDataModel.FK_LogEvent_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="LogEvent" EntitySet="LogEvents" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Badge">
     <Key>
@@ -82,6 +96,7 @@
     <NavigationProperty Name="Contacts1" Relationship="BusinessDataModel.FK_Contact_OwnerID" FromRole="User" ToRole="Contact" />
     <NavigationProperty Name="UserImages" Relationship="BusinessDataModel.FK_UserImage_User" FromRole="User" ToRole="UserImage" />
     <NavigationProperty Name="InviteCodes" Relationship="BusinessDataModel.FK_InviteCode_User" FromRole="User" ToRole="InviteCode" />
+    <NavigationProperty Name="LogEvents" Relationship="BusinessDataModel.FK_LogEvent_User" FromRole="User" ToRole="LogEvent" />
   </EntityType>
   <Association Name="FK_TimeEvent_User">
     <End Type="BusinessDataModel.User" Role="User" Multiplicity="1" />
@@ -106,6 +121,7 @@
     <Property Name="CodesCount" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Users" Relationship="BusinessDataModel.FK_User_Organization" FromRole="Organization" ToRole="User" />
     <NavigationProperty Name="InviteCodes" Relationship="BusinessDataModel.FK_InviteCode_Organization" FromRole="Organization" ToRole="InviteCode" />
+    <NavigationProperty Name="LogEvents" Relationship="BusinessDataModel.FK_LogEvent_Organization" FromRole="Organization" ToRole="LogEvent" />
   </EntityType>
   <Association Name="FK_User_Organization">
     <End Type="BusinessDataModel.Organization" Role="Organization" Multiplicity="1" />
@@ -212,6 +228,65 @@
       </Principal>
       <Dependent Role="InviteCode">
         <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="LogEventType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EnumID" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Label" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="LogEvents" Relationship="BusinessDataModel.FK_LogEvent_LogEventType" FromRole="LogEventType" ToRole="LogEvent" />
+  </EntityType>
+  <EntityType Name="LogEvent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Details" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EventType" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="OrganizationID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LogEventType" Relationship="BusinessDataModel.FK_LogEvent_LogEventType" FromRole="LogEvent" ToRole="LogEventType" />
+    <NavigationProperty Name="Organization" Relationship="BusinessDataModel.FK_LogEvent_Organization" FromRole="LogEvent" ToRole="Organization" />
+    <NavigationProperty Name="User" Relationship="BusinessDataModel.FK_LogEvent_User" FromRole="LogEvent" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_LogEvent_LogEventType">
+    <End Type="BusinessDataModel.LogEventType" Role="LogEventType" Multiplicity="1" />
+    <End Type="BusinessDataModel.LogEvent" Role="LogEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LogEventType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogEvent">
+        <PropertyRef Name="EventType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LogEvent_Organization">
+    <End Type="BusinessDataModel.Organization" Role="Organization" Multiplicity="1" />
+    <End Type="BusinessDataModel.LogEvent" Role="LogEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogEvent">
+        <PropertyRef Name="OrganizationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LogEvent_User">
+    <End Type="BusinessDataModel.User" Role="User" Multiplicity="1" />
+    <End Type="BusinessDataModel.LogEvent" Role="LogEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogEvent">
+        <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

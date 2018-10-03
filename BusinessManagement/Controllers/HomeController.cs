@@ -12,6 +12,7 @@ using System.Web.Security;
 using System.Security.Cryptography;
 using System.Text;
 using BusinessManagement.Models.Authentication;
+using BusinessManagement.Models.Logging;
 
 namespace BusinessManagement.Controllers
 {
@@ -72,10 +73,12 @@ namespace BusinessManagement.Controllers
                     // Otherwise send them to the default page.
                     if (this.Url.IsLocalUrl(ReturnUrl))
                     {
+                        EventLogger.LogNewEvent(login.Id, login.OrganizationID, LoggingEventType.UserLogin, "");
                         return Redirect(ReturnUrl);
                     }
                     else
                     {
+                        EventLogger.LogNewEvent(login.Id, login.OrganizationID, LoggingEventType.UserLogin, "");
                         return RedirectToAction("Time", "TimeCard");
                     }            
                 }
@@ -94,6 +97,10 @@ namespace BusinessManagement.Controllers
        */
         public ActionResult Logout()
         {
+            // Log sign out event
+            EventLogger.LogNewEvent(MembershipAuth.GetCurrentUserID(HttpContext.Request), MembershipAuth.GetCurrentUserOrganizationID(HttpContext.Request), LoggingEventType.UserLogout, "");
+
+            // Signout
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Login");

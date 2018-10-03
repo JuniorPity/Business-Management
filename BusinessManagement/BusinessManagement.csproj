@@ -198,9 +198,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -210,7 +208,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Authentication\MembershipAuth.cs" />
     <Compile Include="Models\Badge.cs">
       <DependentUpon>BusinessData.tt</DependentUpon>
@@ -234,12 +231,18 @@
       <DependentUpon>BusinessData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Event.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageProcessor.cs" />
     <Compile Include="Models\InviteCode.cs">
       <DependentUpon>BusinessData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\LogEvent.cs">
+      <DependentUpon>BusinessData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LogEventType.cs">
+      <DependentUpon>BusinessData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Logging\EventLogger.cs" />
+    <Compile Include="Models\Logging\LoggingEventType.cs" />
     <Compile Include="Models\Organization.cs">
       <DependentUpon>BusinessData.tt</DependentUpon>
     </Compile>

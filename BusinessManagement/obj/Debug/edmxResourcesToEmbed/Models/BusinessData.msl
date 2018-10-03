@@ -88,5 +88,26 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="LogEventTypes">
+      <EntityTypeMapping TypeName="BusinessDataModel.LogEventType">
+        <MappingFragment StoreEntitySet="LogEventType">
+          <ScalarProperty Name="Label" ColumnName="Label" />
+          <ScalarProperty Name="EnumID" ColumnName="EnumID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogEvents">
+      <EntityTypeMapping TypeName="BusinessDataModel.LogEvent">
+        <MappingFragment StoreEntitySet="LogEvent">
+          <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="EventType" ColumnName="EventType" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

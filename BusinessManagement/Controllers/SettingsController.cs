@@ -131,7 +131,7 @@ namespace BusinessManagement.Controllers
         public ActionResult Invites()
         {
             // Only let admins access this view
-            if(MembershipAuth.IsAdmin(HttpContext.Request, db))
+            if(MembershipAuth.IsAdmin(HttpContext.Request))
             {
                 // Get credentials to get proper invites
                 string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
@@ -155,7 +155,7 @@ namespace BusinessManagement.Controllers
         public ActionResult GenerateInvite(string email)
         {
             // Only allow admins to submit a new code
-            if (MembershipAuth.IsAdmin(HttpContext.Request, db))
+            if (MembershipAuth.IsAdmin(HttpContext.Request))
             {           
                 // Generate the invite code     
                 Random rand = new Random();

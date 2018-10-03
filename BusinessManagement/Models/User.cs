@@ -22,6 +22,7 @@ namespace BusinessManagement.Models
             this.Contacts1 = new HashSet<Contact>();
             this.UserImages = new HashSet<UserImage>();
             this.InviteCodes = new HashSet<InviteCode>();
+            this.LogEvents = new HashSet<LogEvent>();
         }
     
         public int Id { get; set; }
@@ -51,5 +52,7 @@ namespace BusinessManagement.Models
         public virtual ICollection<UserImage> UserImages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InviteCode> InviteCodes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LogEvent> LogEvents { get; set; }
     }
 }

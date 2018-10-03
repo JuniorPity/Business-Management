@@ -32,6 +32,25 @@
     <Property Name="CreatedBy" Type="int" Nullable="false" />
     <Property Name="SentTo" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="LogEvent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Details" Type="nvarchar" MaxLength="100" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="EventType" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="OrganizationID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LogEventType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EnumID" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Label" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="Organization">
     <Key>
       <PropertyRef Name="Id" />
@@ -128,6 +147,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_LogEvent_LogEventType">
+    <End Role="LogEventType" Type="Self.LogEventType" Multiplicity="1" />
+    <End Role="LogEvent" Type="Self.LogEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LogEventType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogEvent">
+        <PropertyRef Name="EventType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LogEvent_Organization">
+    <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+    <End Role="LogEvent" Type="Self.LogEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogEvent">
+        <PropertyRef Name="OrganizationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LogEvent_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="LogEvent" Type="Self.LogEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogEvent">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TimeEvent_User">
     <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="TimeEvent" Type="Self.TimeEvent" Multiplicity="*" />
@@ -168,6 +223,8 @@
     <EntitySet Name="Badge" EntityType="Self.Badge" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="InviteCode" EntityType="Self.InviteCode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LogEvent" EntityType="Self.LogEvent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LogEventType" EntityType="Self.LogEventType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TimeEvent" EntityType="Self.TimeEvent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -187,6 +244,18 @@
     <AssociationSet Name="FK_InviteCode_User" Association="Self.FK_InviteCode_User">
       <End Role="User" EntitySet="User" />
       <End Role="InviteCode" EntitySet="InviteCode" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LogEvent_LogEventType" Association="Self.FK_LogEvent_LogEventType">
+      <End Role="LogEventType" EntitySet="LogEventType" />
+      <End Role="LogEvent" EntitySet="LogEvent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LogEvent_Organization" Association="Self.FK_LogEvent_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="LogEvent" EntitySet="LogEvent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LogEvent_User" Association="Self.FK_LogEvent_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="LogEvent" EntitySet="LogEvent" />
     </AssociationSet>
     <AssociationSet Name="FK_TimeEvent_User" Association="Self.FK_TimeEvent_User">
       <End Role="User" EntitySet="User" />
