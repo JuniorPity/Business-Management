@@ -13,7 +13,7 @@ namespace BusinessManagement.Controllers
 
         private const string PROFILE_ERROR = "We can't find the profile that you requested. It is currently unavailable, or does not exist. Please try again. \n ERROR: PROFILE_ERROR";
         private const string PROFILE_EDIT_ERROR = "There was an error processing your edit request. Please try again. \n ERROR: PROFILE_EDIT_ERROR";
-
+        private const string PERMISSION_ERROR = "You do not have permission to access this functionality. Please contact your system adminstartor. \n PERMISSION_ERROR";
         #endregion
 
         // Actions
@@ -35,6 +35,9 @@ namespace BusinessManagement.Controllers
                     break;
                 case 2:
                     message = PROFILE_EDIT_ERROR;
+                    break;
+                case 3:
+                    message = PERMISSION_ERROR;
                     break;
                 default:
                     break;

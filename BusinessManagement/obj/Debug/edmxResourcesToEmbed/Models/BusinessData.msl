@@ -68,6 +68,8 @@
     <EntitySetMapping Name="InviteCodes">
       <EntityTypeMapping TypeName="BusinessDataModel.InviteCode">
         <MappingFragment StoreEntitySet="InviteCode">
+          <ScalarProperty Name="SentTo" ColumnName="SentTo" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="DateExpired" ColumnName="DateExpired" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />

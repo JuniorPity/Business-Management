@@ -118,5 +118,95 @@ namespace BusinessManagement.Controllers
         }
 
         #endregion
+
+        // Invite Actions
+        #region Invite Actions
+
+        /*
+        * Function: Invites()
+        * Purpose: Show the invite view 
+        * Author: Jordan Pitner 10/3/2018
+        */
+        [Authorize]
+        public ActionResult Invites()
+        {
+            // Only let admins access this view
+            if(MembershipAuth.IsAdmin(HttpContext.Request, db))
+            {
+                // Get credentials to get proper invites
+                string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
+                int orgID = db.Users.SingleOrDefault(u => u.Email == userName).OrganizationID;
+
+                // Return list of invites for viewing
+                List<InviteCode> inviteCodes = db.InviteCodes.Where(i => i.OrganizationID == orgID).ToList();
+
+                return View(inviteCodes);
+            }
+
+            return RedirectToAction("Error", "Error", new { error = 3 });
+        }
+
+        /*
+        * Function: GenerateInvite()
+        * Purpose: Generate a new invite and post it to the db
+        * Author: Jordan Pitner 10/3/2018
+        */
+        [HttpPost]
+        public ActionResult GenerateInvite(string email)
+        {
+            // Only allow admins to submit a new code
+            if (MembershipAuth.IsAdmin(HttpContext.Request, db))
+            {           
+                // Generate the invite code     
+                Random rand = new Random();
+                string code = CreateInviteCode(rand.Next(58, 65));
+
+                // Get information from database to populate the invite
+                string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
+                int orgID = db.Users.SingleOrDefault(u => u.Email == userName).OrganizationID;
+                int createdBy = db.Users.SingleOrDefault(u => u.Email == userName).Id;
+
+                // Create new invite code
+                InviteCode invite = new InviteCode
+                {
+                    Code = code,
+                    DateCreated = DateTime.Now,
+                    OrganizationID = orgID,
+                    IsExpired = false,
+                    CreatedBy = createdBy,
+                    SentTo = email
+                };
+
+                // Add and commit to database
+                db.InviteCodes.Add(invite);
+                db.SaveChanges();
+            }
+
+            // Return error screen
+            return RedirectToAction("Error", "Error", new { error = 3 });
+        }
+
+        #endregion
+
+        // Private Methods
+        #region Private Methods
+
+        /*
+        * Function: CreateInviteCode(int length)
+        * Purpose: Generate a random string of chars to act as the invite code
+        * Author: Jordan Pitner 10/3/2018
+        */
+        private string CreateInviteCode(int length)
+        {
+            Random random = new Random();
+
+            // Characters to choose from
+            const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-";
+
+            // Generate string from random generator and length
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+        #endregion
     }
 }

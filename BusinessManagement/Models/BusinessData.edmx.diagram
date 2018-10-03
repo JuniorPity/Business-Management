@@ -18,6 +18,7 @@
         <AssociationConnector Association="BusinessDataModel.FK_InviteCode_Organization" />
         <EntityTypeShape EntityType="BusinessDataModel.UserImage" Width="1.5" PointX="5.75" PointY="7.375" />
         <AssociationConnector Association="BusinessDataModel.FK_UserImage_User" />
+        <AssociationConnector Association="BusinessDataModel.FK_InviteCode_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

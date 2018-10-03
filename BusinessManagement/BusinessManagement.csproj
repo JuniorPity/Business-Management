@@ -411,6 +411,7 @@
     <Content Include="Views\Contacts\AllContacts.cshtml" />
     <Content Include="Views\Settings\UserSettings.cshtml" />
     <Content Include="Views\Settings\EditProfile.cshtml" />
+    <Content Include="Views\Settings\Invites.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

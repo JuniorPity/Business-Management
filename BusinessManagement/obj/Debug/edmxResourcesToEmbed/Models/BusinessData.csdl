@@ -43,6 +43,10 @@
       <End Role="User" EntitySet="Users" />
       <End Role="UserImage" EntitySet="UserImages" />
     </AssociationSet>
+    <AssociationSet Name="FK_InviteCode_User" Association="BusinessDataModel.FK_InviteCode_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="InviteCode" EntitySet="InviteCodes" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Badge">
     <Key>
@@ -77,6 +81,7 @@
     <NavigationProperty Name="Contacts" Relationship="BusinessDataModel.FK_Contact_ContactID" FromRole="User" ToRole="Contact" />
     <NavigationProperty Name="Contacts1" Relationship="BusinessDataModel.FK_Contact_OwnerID" FromRole="User" ToRole="Contact" />
     <NavigationProperty Name="UserImages" Relationship="BusinessDataModel.FK_UserImage_User" FromRole="User" ToRole="UserImage" />
+    <NavigationProperty Name="InviteCodes" Relationship="BusinessDataModel.FK_InviteCode_User" FromRole="User" ToRole="InviteCode" />
   </EntityType>
   <Association Name="FK_TimeEvent_User">
     <End Type="BusinessDataModel.User" Role="User" Multiplicity="1" />
@@ -137,6 +142,9 @@
     <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="DateExpired" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Organization" Relationship="BusinessDataModel.FK_InviteCode_Organization" FromRole="InviteCode" ToRole="Organization" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="SentTo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="BusinessDataModel.FK_InviteCode_User" FromRole="InviteCode" ToRole="User" />
   </EntityType>
   <Association Name="FK_Contact_ContactID">
     <End Type="BusinessDataModel.User" Role="User" Multiplicity="1" />
@@ -192,6 +200,18 @@
       </Principal>
       <Dependent Role="UserImage">
         <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InviteCode_User">
+    <End Type="BusinessDataModel.User" Role="User" Multiplicity="1" />
+    <End Type="BusinessDataModel.InviteCode" Role="InviteCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InviteCode">
+        <PropertyRef Name="CreatedBy" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

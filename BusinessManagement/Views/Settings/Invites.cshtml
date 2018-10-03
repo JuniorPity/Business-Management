@@ -1,0 +1,59 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Invites</title>
+
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Scripts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/Login.js"></script>
+    <script type="text/javascript" src="~/Scripts/Settings.js"></script>
+    <link href="~/Content/basic.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default infoPanel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 pull-right">
+                            <button id="sendInvite" class="btn btn-default">Test</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(function () {
+        $("#sendInvite").on("click", function () {
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Content("/Settings/GenerateInvite/")",
+                dataType: 'json',
+                data: JSON.stringify({ email: "jrptnr13@gmail.com" }),
+                async: true,
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                },
+                error: function () {
+                    alert('There was an error processing your request');
+                }
+            });
+        });
+    });
+</script>

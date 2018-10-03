@@ -29,6 +29,8 @@
     <Property Name="IsExpired" Type="bit" Nullable="false" />
     <Property Name="DateCreated" Type="datetime" Nullable="false" />
     <Property Name="DateExpired" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="SentTo" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Organization">
     <Key>
@@ -114,6 +116,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_InviteCode_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="InviteCode" Type="Self.InviteCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InviteCode">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TimeEvent_User">
     <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="TimeEvent" Type="Self.TimeEvent" Multiplicity="*" />
@@ -168,6 +182,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_InviteCode_Organization" Association="Self.FK_InviteCode_Organization">
       <End Role="Organization" EntitySet="Organization" />
+      <End Role="InviteCode" EntitySet="InviteCode" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InviteCode_User" Association="Self.FK_InviteCode_User">
+      <End Role="User" EntitySet="User" />
       <End Role="InviteCode" EntitySet="InviteCode" />
     </AssociationSet>
     <AssociationSet Name="FK_TimeEvent_User" Association="Self.FK_TimeEvent_User">

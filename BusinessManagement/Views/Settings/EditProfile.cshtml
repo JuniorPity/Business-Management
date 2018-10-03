@@ -15,6 +15,7 @@
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Scripts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <script type="text/javascript" src="~/Scripts/Login.js"></script>
+    <script type="text/javascript" src="~/Scripts/Settings.js"></script>
     <link href="~/Content/basic.css" rel="stylesheet" />
 </head>
 <body style="background-color: transparent">
@@ -116,8 +117,11 @@
                     <br />
                     <br />
                     <div class="row">
-                        <div class="col-md-2 pull-right">
-                            <input type="submit" value="Save Changes" class="btn btn-success pull-right"/>
+                        <div class="col-md-2 col-md-offset-9 text-right">
+                            <i id="alertChanges" class="fa fa-exclamation-circle fa-2x" style="color:red; display: none"></i>
+                        </div>
+                        <div class="col-md-1 pull-right">
+                            <input id="saveChanges" type="submit" value="Save Changes" class="btn btn-success pull-right disabled"/>
                         </div>
                     </div>
                 </div>

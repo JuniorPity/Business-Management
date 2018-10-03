@@ -21,6 +21,7 @@ namespace BusinessManagement.Models
             this.Contacts = new HashSet<Contact>();
             this.Contacts1 = new HashSet<Contact>();
             this.UserImages = new HashSet<UserImage>();
+            this.InviteCodes = new HashSet<InviteCode>();
         }
     
         public int Id { get; set; }
@@ -48,5 +49,7 @@ namespace BusinessManagement.Models
         public virtual ICollection<Contact> Contacts1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserImage> UserImages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InviteCode> InviteCodes { get; set; }
     }
 }

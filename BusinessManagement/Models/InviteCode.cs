@@ -20,7 +20,10 @@ namespace BusinessManagement.Models
         public bool IsExpired { get; set; }
         public System.DateTime DateCreated { get; set; }
         public Nullable<System.DateTime> DateExpired { get; set; }
+        public int CreatedBy { get; set; }
+        public string SentTo { get; set; }
     
         public virtual Organization Organization { get; set; }
+        public virtual User User { get; set; }
     }
 }
