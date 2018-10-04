@@ -48,8 +48,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="EnumID" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="Label" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="EnumID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Label" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Organization">
     <Key>

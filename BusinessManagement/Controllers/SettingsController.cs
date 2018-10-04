@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BusinessManagement.Models;
 using BusinessManagement.Models.Authentication;
+using BusinessManagement.Models.StringBuilding;
 using System.Drawing;
 
 namespace BusinessManagement.Controllers
@@ -159,7 +160,7 @@ namespace BusinessManagement.Controllers
             {           
                 // Generate the invite code     
                 Random rand = new Random();
-                string code = CreateInviteCode(rand.Next(58, 65));
+                string code = StringManipulator.CreateInviteCode(rand.Next(58, 65));
 
                 // Get information from database to populate the invite
                 string userName = MembershipAuth.GetCurrentUser(HttpContext.Request);
@@ -191,22 +192,7 @@ namespace BusinessManagement.Controllers
         // Private Methods
         #region Private Methods
 
-        /*
-        * Function: CreateInviteCode(int length)
-        * Purpose: Generate a random string of chars to act as the invite code
-        * Author: Jordan Pitner 10/3/2018
-        */
-        private string CreateInviteCode(int length)
-        {
-            Random random = new Random();
-
-            // Characters to choose from
-            const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-";
-
-            // Generate string from random generator and length
-            return new string(Enumerable.Repeat(chars, length)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
+        
         #endregion
     }
 }

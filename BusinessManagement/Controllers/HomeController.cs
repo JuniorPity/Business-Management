@@ -13,6 +13,7 @@ using System.Security.Cryptography;
 using System.Text;
 using BusinessManagement.Models.Authentication;
 using BusinessManagement.Models.Logging;
+using BusinessManagement.Models.StringBuilding;
 
 namespace BusinessManagement.Controllers
 {
@@ -62,7 +63,7 @@ namespace BusinessManagement.Controllers
             {
                 // Find the user with the appropriate username, and check hashed password
                 User login = db.Users.FirstOrDefault(a => a.Email.Equals(user.Email));
-                string pass = GenerateHashedPassword(login.Salt, user.Password);
+                string pass = StringManipulator.GenerateHashedPassword(login.Salt, user.Password);
   
                 // If a user was found, log them in
                 if (login != null && login.Password == pass)
@@ -136,35 +137,42 @@ namespace BusinessManagement.Controllers
                 if (ModelState.IsValid)
                 {
                     // Generate salt and salted/hashed password for db storage
-                    string salt = GenerateSalt();
-                    string hashedPassword = GenerateHashedPassword(salt, user.Password);
+                    string salt = StringManipulator.GenerateSalt();
+                    string hashedPassword = StringManipulator.GenerateHashedPassword(salt, user.Password);
 
+                    // Set user properties
                     user.Password = hashedPassword;
                     user.Salt = salt;
                     user.Role = "Standard";
                     user.Position = "N/A";
-                    user.EmployeeID = user.FirstName[0] + user.LastName[0] + GenerateIdNumber(10);
+                    user.EmployeeID = user.FirstName[0] + user.LastName[0] + StringManipulator.GenerateIdNumber(8);
                     user.RegDate = DateTime.Now;
 
+                    // If an invite code was present, join that org. If not, create a new one
                     if (string.IsNullOrEmpty(inviteCode))
                     {
                         Organization org = new Organization();
 
+                        // Set Organization properties
                         org.Label = user.Organization.Label;
                         org.Registered = DateTime.Now;
                         org.CodesCount = 1;
-                        org.OrganizationID = org.Label + "#" + GenerateIdNumber(8);
+                        org.OrganizationID = org.Label + "#" + StringManipulator.GenerateIdNumber(8);
 
+                        // Add new org to database
                         db.Organizations.Add(org);
                         db.SaveChanges();
 
+                        // Link the user to the newly created org
                         user.Organization = org;
                         user.OrganizationID = org.Id;
                     }
                     else
                     {
+                        // Find the organization relating to the invite code
                         InviteCode code = db.InviteCodes.FirstOrDefault(i => i.Code == inviteCode);
 
+                        // If the code is valid, 
                         if(code != null && !code.IsExpired)
                         {
                             user.OrganizationID = code.OrganizationID;
@@ -172,74 +180,21 @@ namespace BusinessManagement.Controllers
                             code.IsExpired = true;
                             code.DateExpired = DateTime.Now;
 
+                            // Commit invite code changes
                             db.SaveChanges();
                         }
                     }
 
-                    // Commit changes
+                    // Commit user changes
                     db.Users.Add(user);
                     db.SaveChanges();
+
+                    // Log the user creation event
+                    EventLogger.LogNewEvent(user.Id, user.OrganizationID, LoggingEventType.UserCreated, "");
                 }
             }
 
             return View("Login");
-        }
-        #endregion
-
-        // Hashing and Random Algorithsm
-        #region Hashing and Random Algorithms
-        /*
-        * Function: GenerateSalt()
-        * Purpose: Generate a random salt to help hash passwords
-        * Author: Jordan Pitner 9/20/2018
-        */
-        private string GenerateSalt()
-        {
-            Random random = new Random();
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-            return new string(Enumerable.Repeat(chars, 15)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
-
-
-        /*
-        * Function: GenerateHashedPassword(string salt, string password)
-        * Purpose: Generate a salted and hashed password for storage in the database
-        * Author: Jordan Pitner 9/20/2018
-        */
-        private string GenerateHashedPassword(string salt, string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                string hash = salt + password + salt;
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(hash));
-
-                // Convert byte array to a string   
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-
-                return builder.ToString();
-            }
-        }
-
-
-        /*
-        * Function: GenerateIdNumber()
-        * Purpose: Generate a random series of numbers for EmployerID numbers
-        * Author: Jordan Pitner 9/20/2018
-        */
-        private string GenerateIdNumber(int size)
-        {
-            Random random = new Random();
-            const string chars = "0123456789";
-
-            // Get random numerics from the char string
-            return new string(Enumerable.Repeat(chars, size)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
         #endregion
     }

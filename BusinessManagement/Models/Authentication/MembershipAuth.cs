@@ -92,7 +92,7 @@ namespace BusinessManagement.Models.Authentication
 
             User user = db.Users.SingleOrDefault(u => u.Email == ticket.Name);
 
-            if (user != null && user.Role == "Site Administrator")
+            if (user != null && user.Role == "System Administrator")
             {
                 return true;
             }

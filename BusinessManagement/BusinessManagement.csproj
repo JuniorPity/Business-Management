@@ -246,6 +246,7 @@
     <Compile Include="Models\Organization.cs">
       <DependentUpon>BusinessData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StringBuilding\StringManipulator.cs" />
     <Compile Include="Models\Summary.cs" />
     <Compile Include="Models\TimeEvent.cs">
       <DependentUpon>BusinessData.tt</DependentUpon>
